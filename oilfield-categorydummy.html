@@ -1,0 +1,2110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRO CAPITAL | Oilfield Drill Bits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --deep-black: #0d0d0d;
+        --graphite: #2c2c2c;
+        --warm-grey: #b8b8b8;
+        --gold: #c6a15b;
+        --gold-light: #d4b76a;
+        --white: #f8f8f8;
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --transition: all 0.4s var(--ease-smooth);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(circle at 15% 8%, rgba(198, 161, 91, 0.09), transparent 28%),
+          linear-gradient(180deg, #070707 0%, #0d0d0d 54%, #070707 100%);
+        color: var(--white);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      /* ===== NAVIGATION (matches index.html) ===== */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 8px 60px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        column-gap: 32px;
+        align-items: center;
+        transition: var(--transition);
+        background: #00000070;
+        animation: navDrop 0.85s var(--ease-out) both;
+      }
+
+      @keyframes navDrop {
+        from {
+          opacity: 0;
+          transform: translateY(-18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .navbar.scrolled {
+        background: rgba(13, 13, 13, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 8px 60px;
+        box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--white);
+        text-decoration: none;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: var(--transition);
+      }
+
+      .navbar .logo {
+        width: 132px;
+        height: 80px;
+        flex: 0 0 auto;
+        overflow: hidden;
+      }
+
+      .navbar .logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: left center;
+        transition: var(--transition);
+      }
+
+      .logo:hover {
+        color: var(--gold-light);
+      }
+
+      /* ===== MEGA MENU NAVIGATION ===== */
+      .nav-menu-wrapper {
+        display: contents;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        width: 100%;
+      }
+
+      .nav-item {
+        position: static;
+      }
+
+      .nav-top-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 14px;
+        border-radius: 3px;
+        color: var(--warm-grey);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 400;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+
+      .nav-top-link .caret {
+        width: 6px;
+        height: 6px;
+        border-right: 1px solid currentColor;
+        border-bottom: 1px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+        transition: transform 0.3s var(--ease-out);
+        opacity: 0.65;
+      }
+
+      .nav-item.mega-open .nav-top-link .caret {
+        transform: rotate(-135deg) translateY(1px);
+        opacity: 1;
+      }
+
+      .nav-item.mega-open .nav-top-link,
+      .nav-top-link:hover {
+        color: var(--gold);
+        background: rgba(198, 161, 91, 0.08);
+      }
+
+      .nav-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+        z-index: 900;
+      }
+
+      .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mega-menu {
+        position: fixed;
+        top: 96px;
+        left: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(15, 15, 15, 0.99) 0%, rgba(10, 10, 10, 0.99) 100%);
+        backdrop-filter: blur(28px);
+        border-bottom: 1px solid rgba(198, 161, 91, 0.16);
+        box-shadow: 0 40px 70px rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px) scaleY(0.98);
+        transform-origin: top;
+        transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s;
+        z-index: 999;
+      }
+
+      .mega-menu::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+        opacity: 0.6;
+      }
+
+      .nav-item.mega-open .mega-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scaleY(1);
+        max-height: 78vh;
+        overflow-y: auto;
+      }
+
+      .mega-menu-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 38px 60px 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 30px 40px;
+      }
+
+      .mega-col:has(ul li:nth-child(11)) {
+        grid-column: span 2;
+      }
+
+      .mega-col:has(ul li:nth-child(11)) ul {
+        column-count: 2;
+        column-gap: 28px;
+      }
+
+      .mega-col:has(ul li:nth-child(11)) li {
+        break-inside: avoid;
+      }
+
+      .mega-col-title {
+        position: relative;
+        font-family: "Playfair Display", serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--gold);
+        letter-spacing: 0.4px;
+        margin-bottom: 16px;
+        padding-bottom: 11px;
+        padding-left: 12px;
+        border-bottom: 1px solid rgba(198, 161, 91, 0.2);
+      }
+
+      .mega-col-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        bottom: 13px;
+        width: 2px;
+        background: var(--gold);
+      }
+
+      .mega-col ul {
+        list-style: none;
+      }
+
+      .mega-col li {
+        margin-bottom: 2px;
+      }
+
+      .mega-col a {
+        display: block;
+        color: var(--warm-grey);
+        text-decoration: none;
+        font-size: 0.81rem;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+        text-transform: none;
+        padding: 6px 10px 6px 0;
+        border-radius: 3px;
+        transition: color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+      }
+
+      .mega-col a:hover {
+        color: var(--gold-light);
+        background: rgba(198, 161, 91, 0.07);
+        padding-left: 10px;
+      }
+
+      .mega-menu-footer {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 16px 60px 26px;
+        display: flex;
+        gap: 36px;
+        border-top: 1px solid rgba(198, 161, 91, 0.12);
+      }
+
+      .mega-menu-footer a {
+        color: var(--gold);
+        text-decoration: none;
+        font-size: 0.74rem;
+        font-weight: 500;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        transition: var(--transition);
+      }
+
+      .mega-menu-footer a:hover {
+        color: var(--gold-light);
+        letter-spacing: 1.8px;
+      }
+
+      /* ===== UTILITY BUTTONS ===== */
+      .nav-utility {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .btn-utility {
+        padding: 10px 22px;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 1.3px;
+        text-transform: uppercase;
+        text-decoration: none;
+        white-space: nowrap;
+        border-radius: 2px;
+        transition: var(--transition);
+      }
+
+      .btn-sell {
+        color: var(--deep-black);
+        background: var(--gold);
+      }
+
+      .btn-sell:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(198, 161, 91, 0.3);
+      }
+
+      .btn-login {
+        color: var(--white);
+        background: transparent;
+        border: 1px solid rgba(198, 161, 91, 0.5);
+      }
+
+      .btn-login:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-2px);
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(198, 161, 91, 0.45);
+        background: rgba(13, 13, 13, 0.72);
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        transition: var(--transition);
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 1px;
+        background: var(--gold);
+        transition: var(--transition);
+      }
+
+      .navbar.menu-open .menu-toggle span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      .navbar.menu-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .navbar.menu-open .menu-toggle span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      /* ===== PAGE CONTENT (unchanged from drill bits page) ===== */
+      .marketplace-shell {
+        width: min(1500px, calc(100% - 44px));
+        margin: 0 auto;
+        padding: 142px 0 76px;
+      }
+
+      .marketplace-kicker {
+        color: var(--gold);
+        font-size: 0.74rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .marketplace-grid {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr);
+        gap: 36px;
+        align-items: start;
+      }
+
+      .browse-sidebar {
+        position: sticky;
+        top: 118px;
+        padding: 26px 22px 28px;
+        border: 1px solid rgba(198, 161, 91, 0.16);
+        border-radius: 8px;
+        background: linear-gradient(180deg, rgba(17, 17, 17, 0.98) 0%, rgba(10, 10, 10, 0.99) 100%);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+      }
+
+      .browse-title {
+        position: relative;
+        font-family: "Playfair Display", serif;
+        color: var(--white);
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+        padding-left: 13px;
+        border-bottom: 1px solid rgba(198, 161, 91, 0.2);
+      }
+
+      .browse-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        bottom: 16px;
+        width: 2px;
+        background: var(--gold);
+      }
+
+      .browse-select {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 0 16px;
+        border: 1px solid rgba(198, 161, 91, 0.28);
+        border-radius: 6px;
+        background: linear-gradient(180deg, rgba(198, 161, 91, 0.12), rgba(198, 161, 91, 0.04));
+        color: var(--white);
+        font-weight: 700;
+        font-size: 0.92rem;
+        margin-bottom: 18px;
+        transition: var(--transition);
+      }
+
+      .browse-select:hover {
+        border-color: rgba(198, 161, 91, 0.5);
+      }
+
+      .browse-select .select-copy {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .line-icon {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 20px;
+        color: var(--gold);
+      }
+
+      .line-icon::before,
+      .line-icon::after {
+        content: "";
+        position: absolute;
+        border: 1.5px solid currentColor;
+      }
+
+      .icon-rig::before {
+        left: 7px;
+        top: 1px;
+        width: 6px;
+        height: 18px;
+        transform: skew(-12deg);
+      }
+
+      .icon-rig::after {
+        left: 2px;
+        right: 2px;
+        bottom: 1px;
+        height: 5px;
+      }
+
+      .icon-drill::before {
+        left: 3px;
+        top: 3px;
+        width: 14px;
+        height: 10px;
+        border-radius: 8px 8px 2px 2px;
+        transform: rotate(-28deg);
+      }
+
+      .icon-drill::after {
+        right: 0;
+        bottom: 1px;
+        width: 11px;
+        height: 2px;
+        transform: rotate(44deg);
+      }
+
+      .icon-prod::before {
+        left: 6px;
+        top: 2px;
+        width: 6px;
+        height: 15px;
+      }
+
+      .icon-prod::after {
+        left: 3px;
+        top: 5px;
+        width: 12px;
+        height: 5px;
+        border-radius: 8px;
+      }
+
+      .icon-box::before {
+        inset: 5px 2px 3px;
+        border-radius: 3px;
+      }
+
+      .icon-box::after {
+        left: 6px;
+        top: 2px;
+        width: 8px;
+        height: 6px;
+        border-radius: 3px 3px 0 0;
+      }
+
+      .icon-pipe::before {
+        left: 2px;
+        top: 8px;
+        width: 16px;
+        height: 5px;
+        border-radius: 6px;
+        transform: rotate(-43deg);
+      }
+
+      .icon-parts::before {
+        left: 2px;
+        top: 5px;
+        width: 16px;
+        height: 12px;
+      }
+
+      .icon-parts::after {
+        left: 5px;
+        top: 8px;
+        width: 10px;
+        height: 1px;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .chevron {
+        width: 9px;
+        height: 9px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+      }
+
+      .chevron.up {
+        transform: rotate(-135deg) translateY(-1px);
+      }
+
+      .category-block {
+        overflow: hidden;
+        border: 1px solid rgba(198, 161, 91, 0.18);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.015);
+        margin-bottom: 16px;
+      }
+
+      .category-heading,
+      .category-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        min-height: 46px;
+        padding: 0 16px;
+        transition: var(--transition);
+      }
+
+      .category-heading {
+        color: var(--gold-light);
+        background: linear-gradient(90deg, rgba(198, 161, 91, 0.2), rgba(198, 161, 91, 0.06));
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.3px;
+      }
+
+      .heading-copy,
+      .row-copy {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sub-list {
+        position: relative;
+        padding: 10px 10px 12px 50px;
+      }
+
+      .sub-list::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 17px;
+        left: 27px;
+        width: 1px;
+        background: rgba(198, 161, 91, 0.22);
+      }
+
+      .sub-item {
+        position: relative;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        margin-bottom: 2px;
+        color: var(--warm-grey);
+        border-radius: 5px;
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+
+      .sub-item::before {
+        content: "";
+        position: absolute;
+        left: -23px;
+        top: 50%;
+        width: 10px;
+        height: 1px;
+        background: rgba(198, 161, 91, 0.3);
+      }
+
+      .sub-item:hover {
+        color: var(--white);
+        background: rgba(198, 161, 91, 0.06);
+        padding-left: 16px;
+      }
+
+      .sub-item.active {
+        color: var(--gold-light);
+        background: linear-gradient(90deg, rgba(198, 161, 91, 0.3), rgba(198, 161, 91, 0.12));
+        font-weight: 700;
+      }
+
+      .sub-item.active::after {
+        content: "";
+        position: absolute;
+        left: -29px;
+        top: 50%;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--gold-light);
+        transform: translateY(-50%);
+        box-shadow: 0 0 0 3px rgba(198, 161, 91, 0.15);
+      }
+
+      .collapsed-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 4px;
+      }
+
+      .category-row {
+        border: 1px solid rgba(198, 161, 91, 0.16);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.015);
+        color: var(--warm-grey);
+        font-size: 0.9rem;
+      }
+
+      .category-row:hover {
+        border-color: rgba(198, 161, 91, 0.4);
+        color: var(--white);
+        background: rgba(198, 161, 91, 0.05);
+      }
+
+      .trust-box {
+        margin-top: 22px;
+        display: grid;
+        grid-template-columns: 34px 1fr;
+        gap: 14px;
+        padding: 20px 18px;
+        border: 1px solid rgba(198, 161, 91, 0.32);
+        border-radius: 6px;
+        background: rgba(198, 161, 91, 0.04);
+        color: var(--warm-grey);
+      }
+
+      .trust-mark {
+        position: relative;
+        width: 34px;
+        height: 42px;
+        border: 2px solid var(--gold);
+        border-radius: 18px 18px 10px 10px;
+      }
+
+      .trust-mark::before {
+        content: "*";
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 1.3rem;
+      }
+
+      .trust-box h3 {
+        color: var(--gold-light);
+        font-size: 0.8rem;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      .trust-box p {
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+
+      .products-panel {
+        min-width: 0;
+      }
+
+      .catalog-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: start;
+        margin-bottom: 32px;
+      }
+
+      .breadcrumb {
+        color: var(--warm-grey);
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        font-size: 0.86rem;
+        margin-bottom: 18px;
+      }
+
+      .breadcrumb span {
+        color: rgba(184, 184, 184, 0.48);
+      }
+
+      .breadcrumb strong {
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      .catalog-title {
+        font-size: clamp(2.3rem, 3.4vw, 3.05rem);
+        line-height: 1;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .catalog-copy {
+        max-width: 660px;
+        color: var(--warm-grey);
+        font-size: 1rem;
+        line-height: 1.45;
+      }
+
+      .save-search {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--white);
+        font-size: 0.96rem;
+        white-space: nowrap;
+        transition: var(--transition);
+      }
+
+      .save-search:hover {
+        border-color: rgba(198, 161, 91, 0.55);
+        color: var(--gold-light);
+      }
+
+      .result-count {
+        color: var(--white);
+        font-size: 0.98rem;
+        margin-bottom: 20px;
+      }
+
+      .result-count strong {
+        color: var(--gold-light);
+        font-weight: 700;
+      }
+
+      .filter-row {
+        display: flex;
+        gap: 11px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+
+      .filter-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        min-height: 44px;
+        padding: 0 15px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 4px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
+        color: var(--white);
+        font: inherit;
+        font-size: 0.94rem;
+        min-width: 140px;
+        justify-content: space-between;
+        cursor: pointer;
+      }
+
+      .filter-chip .chip-copy {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .chip-icon {
+        color: var(--warm-grey);
+        font-size: 1rem;
+      }
+
+      .chip-chevron {
+        width: 8px;
+        height: 8px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+        color: var(--warm-grey);
+      }
+
+      .results-line {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .view-switch {
+        display: inline-flex;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 4px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .view-button {
+        width: 58px;
+        height: 38px;
+        border: 0;
+        display: grid;
+        place-items: center;
+        background: transparent;
+        color: var(--warm-grey);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .view-button.active {
+        background: rgba(198, 161, 91, 0.18);
+        color: var(--gold-light);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .product-card {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+        background: linear-gradient(180deg, rgba(21, 28, 32, 0.96), rgba(13, 18, 21, 0.98));
+        overflow: hidden;
+        transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(198, 161, 91, 0.34);
+        background: linear-gradient(180deg, rgba(198, 161, 91, 0.08), rgba(255, 255, 255, 0.025));
+      }
+
+      .product-image {
+        position: relative;
+        aspect-ratio: 1.12;
+        background: #111;
+        overflow: hidden;
+        display: block;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 0.4s var(--ease-out);
+      }
+
+      .product-card:hover .product-image img {
+        transform: scale(1.045);
+      }
+
+      .product-badges {
+        position: absolute;
+        inset: auto 12px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 0 8px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.64);
+        color: var(--white);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        backdrop-filter: blur(10px);
+      }
+
+      .save-dot {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        background: transparent;
+        color: var(--white);
+        font-size: 1.9rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75);
+      }
+
+      .product-body {
+        padding: 17px 16px 16px;
+      }
+
+      .product-title {
+        color: var(--white);
+        font-size: 1.12rem;
+        line-height: 1.22;
+        margin-bottom: 14px;
+      }
+
+      .product-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        color: var(--warm-grey);
+        font-size: 0.93rem;
+        margin-bottom: 22px;
+      }
+
+      .condition {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 8px;
+        border-radius: 4px;
+        font-size: 0.86rem;
+      }
+
+      .condition.excellent,
+      .condition.like-new {
+        color: #62d982;
+        border: 1px solid rgba(98, 217, 130, 0.5);
+        background: rgba(98, 217, 130, 0.1);
+      }
+
+      .condition.good {
+        color: #52b7ff;
+        border: 1px solid rgba(82, 183, 255, 0.5);
+        background: rgba(82, 183, 255, 0.1);
+      }
+
+      .condition.fair {
+        color: var(--warm-grey);
+        border: 1px solid rgba(184, 184, 184, 0.35);
+        background: rgba(184, 184, 184, 0.07);
+      }
+
+      .price-row {
+        display: block;
+      }
+
+      .price {
+        color: var(--gold-light);
+        font-weight: 700;
+        font-size: 1.48rem;
+        margin-bottom: 16px;
+      }
+
+      .price span {
+        display: inline;
+        color: var(--warm-grey);
+        font-size: 0.78rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-left: 4px;
+      }
+
+      .card-button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 44px;
+        padding: 0 14px;
+        border: 1px solid rgba(198, 161, 91, 0.56);
+        border-radius: 4px;
+        color: var(--gold-light);
+        font-size: 0.92rem;
+        font-weight: 700;
+        transition: var(--transition);
+        white-space: nowrap;
+      }
+
+      .card-button:hover {
+        color: var(--deep-black);
+        background: var(--gold);
+      }
+
+      .footer {
+        background:
+          linear-gradient(180deg, rgba(198, 161, 91, 0.08), transparent 34%),
+          linear-gradient(135deg, #080808 0%, #111 52%, #070707 100%);
+        padding: 86px 60px 34px;
+        border-top: 1px solid rgba(198, 161, 91, 0.18);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 1.45fr) repeat(3, minmax(140px, 1fr));
+        gap: 44px;
+        max-width: 1200px;
+        margin: 0 auto 52px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-logo {
+        width: 85px;
+        height: 85px;
+        display: inline-flex;
+        margin-bottom: 24px;
+      }
+
+      .footer-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .footer-brand p {
+        color: var(--warm-grey);
+        font-size: 0.92rem;
+        line-height: 1.8;
+        font-weight: 300;
+        max-width: 300px;
+      }
+
+      .footer-col h4 {
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+        font-weight: 500;
+      }
+
+      .footer-col li {
+        margin-bottom: 5px;
+      }
+
+      .footer-col a {
+        color: var(--warm-grey);
+        font-size: 0.88rem;
+        transition: var(--transition);
+        font-weight: 300;
+      }
+
+      .footer-col a:hover {
+        color: var(--white);
+        padding-left: 4px;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(198, 161, 91, 0.14);
+        padding-top: 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-bottom p {
+        color: var(--warm-grey);
+        font-size: 0.72rem;
+        font-weight: 300;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .social-links a {
+        color: var(--warm-grey);
+        font-size: 0.72rem;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        color: var(--gold);
+      }
+
+      @media (max-width: 1180px) {
+        .products-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      /* ===== RESPONSIVE NAV (matches index.html) ===== */
+      @media (max-width: 1080px) {
+        body.nav-locked {
+          overflow: hidden;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          flex-shrink: 0;
+          position: relative;
+          z-index: 1002;
+        }
+
+        .nav-menu-wrapper {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          top: 0;
+          right: 0;
+          height: 100dvh;
+          width: min(84vw, 360px);
+          padding: 90px 0 0;
+          margin: 0;
+          background: rgba(11, 11, 11, 0.98);
+          backdrop-filter: blur(22px);
+          border-left: 1px solid rgba(198, 161, 91, 0.2);
+          box-shadow: -24px 0 60px rgba(0, 0, 0, 0.5);
+          transform: translateX(100%);
+          transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+          z-index: 1001;
+          overflow-y: auto;
+        }
+
+        .navbar.menu-open .nav-menu-wrapper {
+          transform: translateX(0);
+        }
+
+        .nav-menu-wrapper::-webkit-scrollbar {
+          width: 4px;
+        }
+
+        .nav-menu-wrapper::-webkit-scrollbar-thumb {
+          background: rgba(198, 161, 91, 0.35);
+        }
+
+        .nav-links {
+          flex-direction: column;
+          justify-content: flex-start;
+          gap: 0;
+          width: 100%;
+        }
+
+        .nav-item {
+          width: 100%;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 17px 26px;
+          font-size: 0.74rem;
+          letter-spacing: 1.6px;
+        }
+
+        .nav-top-link {
+          justify-content: space-between;
+          width: 100%;
+          padding: 17px 26px;
+          border-radius: 0;
+        }
+
+        .nav-item.mega-open .nav-top-link,
+        .nav-top-link:hover {
+          background: rgba(198, 161, 91, 0.06);
+        }
+
+        .nav-top-link .caret {
+          width: 8px;
+          height: 8px;
+        }
+
+        .mega-menu {
+          position: static;
+          width: 100%;
+          max-height: 0;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          background: rgba(0, 0, 0, 0.25);
+          border: none;
+          box-shadow: none;
+          backdrop-filter: none;
+          transition: max-height 0.4s var(--ease-smooth);
+        }
+
+        .mega-menu::before {
+          display: none;
+        }
+
+        .nav-item.mega-open .mega-menu {
+          max-height: 3000px;
+        }
+
+        .mega-menu-inner {
+          padding: 6px 26px 10px 34px;
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+
+        .mega-col:has(ul li:nth-child(11)) {
+          grid-column: span 1;
+        }
+
+        .mega-col:has(ul li:nth-child(11)) ul {
+          column-count: 1;
+        }
+
+        .mega-col-title {
+          font-size: 0.78rem;
+          margin-bottom: 10px;
+        }
+
+        .mega-col a {
+          font-size: 0.77rem;
+          padding: 8px 10px 8px 0;
+        }
+
+        .mega-menu-footer {
+          padding: 4px 26px 20px 34px;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .nav-utility {
+          flex-direction: column;
+          align-items: stretch;
+          border-bottom: none;
+          padding: 18px 26px 26px;
+          margin-top: auto;
+          gap: 10px;
+        }
+
+        .nav-utility .btn-utility {
+          display: block;
+          text-align: center;
+        }
+
+        .marketplace-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .browse-sidebar {
+          position: relative;
+          top: auto;
+          min-height: auto;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .navbar,
+        .navbar.scrolled {
+          padding-left: 36px;
+          padding-right: 36px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        html {
+          scroll-padding-top: 78px;
+        }
+
+        .navbar {
+          padding: 8px 22px;
+          background: rgba(13, 13, 13, 0.9);
+          backdrop-filter: blur(18px);
+        }
+
+        .navbar.scrolled {
+          padding: 8px 22px;
+        }
+
+        .logo {
+          font-size: 1.08rem;
+          letter-spacing: 0.7px;
+        }
+
+        .navbar .logo {
+          width: 104px;
+          height: 63px;
+        }
+
+        .nav-menu-wrapper {
+          width: min(88vw, 340px);
+        }
+
+        .marketplace-shell {
+          width: min(100% - 28px, 1500px);
+          padding-top: 112px;
+        }
+
+        .catalog-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+
+        .footer {
+          padding: 58px 22px 30px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 18px;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation (same markup/structure as index.html) -->
+    <nav class="navbar" id="navbar">
+      <a href="index.html" class="logo" aria-label="PRO CAPITAL home">
+        <img src="Pro-Capital-full-logo-blk.png" alt="PRO CAPITAL logo" />
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-menu-wrapper" id="navMenuWrapper">
+        <ul class="nav-links">
+          <li class="nav-item has-mega">
+            <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Oilfield<span class="caret"></span></a>
+            <div class="mega-menu" id="mega-oilfield">
+              <div class="mega-menu-inner">
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Drilling Equipment</h4>
+                  <ul>
+                    <li><a href="#">Blowout Preventers</a></li>
+                    <li><a href="#">Block &amp; Hook Combos</a></li>
+                    <li><a href="#">Downhole / Fishing Tools</a></li>
+                    <li><a href="#">Drawworks</a></li>
+                    <li><a href="oilfield-category.html">Drill Bits</a></li>
+                    <li><a href="#">Drilling Rigs</a></li>
+                    <li><a href="#">Land Rigs</a></li>
+                    <li><a href="#">Mud Pumps</a></li>
+                    <li><a href="#">Pipe Handling Equipment</a></li>
+                    <li><a href="#">Power Swivels</a></li>
+                    <li><a href="#">Pumps</a></li>
+                    <li><a href="#">Rotary Tables</a></li>
+                    <li><a href="#">Shale Shakers</a></li>
+                    <li><a href="#">Solids Control</a></li>
+                    <li><a href="#">Tongs – Power</a></li>
+                    <li><a href="#">Traveling Equipment</a></li>
+                    <li><a href="#">Well Control Equipment</a></li>
+                    <li><a href="#">Well Service / Workover Rigs</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Production Equipment</h4>
+                  <ul>
+                    <li><a href="#">Artificial Lift</a></li>
+                    <li><a href="#">Coil Tubing Units</a></li>
+                    <li><a href="#">Compression Equipment</a></li>
+                    <li><a href="#">Frac Tanks</a></li>
+                    <li><a href="#">Gas Compressors</a></li>
+                    <li><a href="#">Pump Jacks / Pumping Units</a></li>
+                    <li><a href="#">Separators / Filters</a></li>
+                    <li><a href="#">Stimulation Equipment</a></li>
+                    <li><a href="#">Tanks &amp; Vessels</a></li>
+                    <li><a href="#">Well Service Equipment</a></li>
+                    <li><a href="#">Wireline Equipment</a></li>
+                    <li><a href="#">Frac Pumps / High Horsepower Pumps</a></li>
+                    <li><a href="#">Workover Rigs</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Support Equipment</h4>
+                  <ul>
+                    <li><a href="#">Buildings</a></li>
+                    <li><a href="#">Containment Systems</a></li>
+                    <li><a href="#">Engines – Diesel</a></li>
+                    <li><a href="#">Gear Boxes / Drives</a></li>
+                    <li><a href="#">Generators / Electric Power</a></li>
+                    <li><a href="#">Hydraulic Power Units</a></li>
+                    <li><a href="#">Land Cranes</a></li>
+                    <li><a href="#">Power Equipment</a></li>
+                    <li><a href="#">Subsea / Maritime Equipment</a></li>
+                    <li><a href="#">Safety &amp; Lighting Equipment</a></li>
+                    <li><a href="#">Transmissions / Torque Converters</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Tubular Goods / Drill String</h4>
+                  <ul>
+                    <li><a href="#">Casing &amp; Tubing</a></li>
+                    <li><a href="#">Coiled Tubing</a></li>
+                    <li><a href="#">Drill Collars</a></li>
+                    <li><a href="#">Drill Pipe</a></li>
+                    <li><a href="#">Heavy Weight</a></li>
+                    <li><a href="#">Line Pipe</a></li>
+                    <li><a href="#">Pipe</a></li>
+                    <li><a href="#">Pipe Racks</a></li>
+                    <li><a href="#">Pup Joints</a></li>
+                    <li><a href="#">Subs / Crossovers</a></li>
+                    <li><a href="#">Miscellaneous Tubulars</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Parts, Supplies &amp; Tools</h4>
+                  <ul>
+                    <li><a href="#">Actuators</a></li>
+                    <li><a href="#">Brakes / Clutches</a></li>
+                    <li><a href="#">Electrical Equipment</a></li>
+                    <li><a href="#">Filters / Fluids</a></li>
+                    <li><a href="#">Fittings / Flanges</a></li>
+                    <li><a href="#">Gate Valves</a></li>
+                    <li><a href="#">Hardware / Fasteners</a></li>
+                    <li><a href="#">Hoses / Belts</a></li>
+                    <li><a href="#">Hydraulic Equipment</a></li>
+                    <li><a href="#">Instrumentation &amp; Controls</a></li>
+                    <li><a href="#">Rubber / Sealing Products</a></li>
+                    <li><a href="#">Thread Compounds</a></li>
+                    <li><a href="#">Tools</a></li>
+                    <li><a href="#">Valves</a></li>
+                    <li><a href="#">Wear Parts</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mega-menu-footer">
+                <a href="oilfield-category.html" class="mega-view-all">View All Oilfield ▶</a>
+                <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item has-mega">
+            <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Transportation<span class="caret"></span></a>
+            <div class="mega-menu" id="mega-transportation">
+              <div class="mega-menu-inner">
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Oilfield &amp; Heavy Trucks</h4>
+                  <ul>
+                    <li><a href="#">Boom / Bucket / Crane Trucks</a></li>
+                    <li><a href="#">Coiled Tubing Trucks</a></li>
+                    <li><a href="#">Day Cab Trucks</a></li>
+                    <li><a href="#">Flatbed Trucks</a></li>
+                    <li><a href="#">Gin Pole Trucks</a></li>
+                    <li><a href="#">Hot Oil / Heating Trucks</a></li>
+                    <li><a href="#">Military Trucks</a></li>
+                    <li><a href="#">Pressure / Pump Kill Trucks</a></li>
+                    <li><a href="#">Sleeper Trucks</a></li>
+                    <li><a href="#">Specialty Trucks</a></li>
+                    <li><a href="#">Specialty Truck Bodies</a></li>
+                    <li><a href="#">Vacuum Trucks</a></li>
+                    <li><a href="#">Water Trucks</a></li>
+                    <li><a href="#">Winch Trucks</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Trailers</h4>
+                  <ul>
+                    <li><a href="#">Coiled Tubing Trailers</a></li>
+                    <li><a href="#">Drop / Step Deck Trailers</a></li>
+                    <li><a href="#">Dry Van Trailers</a></li>
+                    <li><a href="#">Equipment Trailers</a></li>
+                    <li><a href="#">Flatbed Trailers</a></li>
+                    <li><a href="#">Frac Tank Trailers</a></li>
+                    <li><a href="#">Lowboy Trailers</a></li>
+                    <li><a href="#">Oil Field Trailers</a></li>
+                    <li><a href="#">Pressure / Pump Kill Trailers</a></li>
+                    <li><a href="#">Specialty Tank Trailers</a></li>
+                    <li><a href="#">Specialty Trailers</a></li>
+                    <li><a href="#">Tank Trailer – Hydration Units</a></li>
+                    <li><a href="#">Vacuum Trailers</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Fleet, Rail &amp; Logistics</h4>
+                  <ul>
+                    <li><a href="#">Freight / Shipping / Storage</a></li>
+                    <li><a href="#">Rail Cars &amp; Rail Equipment</a></li>
+                    <li><a href="#">Marine / Barge Equipment</a></li>
+                    <li><a href="#">Fleet Maintenance Equipment</a></li>
+                    <li><a href="#">Dispatch &amp; Logistics Services</a></li>
+                    <li><a href="#">Bulk Haul Equipment</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mega-menu-footer">
+                <a href="#" class="mega-view-all">View All Transportation ▶</a>
+                <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item has-mega">
+            <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Construction<span class="caret"></span></a>
+            <div class="mega-menu" id="mega-construction">
+              <div class="mega-menu-inner">
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Earthmoving Equipment</h4>
+                  <ul>
+                    <li><a href="#">Excavators</a></li>
+                    <li><a href="#">Bulldozers</a></li>
+                    <li><a href="#">Wheel Loaders</a></li>
+                    <li><a href="#">Motor Graders</a></li>
+                    <li><a href="#">Backhoe Loaders</a></li>
+                    <li><a href="#">Skid Steers / Track Loaders</a></li>
+                    <li><a href="#">Scrapers</a></li>
+                    <li><a href="#">Trenchers</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Cranes &amp; Material Handling</h4>
+                  <ul>
+                    <li><a href="#">Crawler Cranes</a></li>
+                    <li><a href="#">Rough Terrain Cranes</a></li>
+                    <li><a href="#">Tower Cranes</a></li>
+                    <li><a href="#">Forklifts</a></li>
+                    <li><a href="#">Aerial / Boom Lifts</a></li>
+                    <li><a href="#">Telehandlers</a></li>
+                    <li><a href="#">Conveyors &amp; Material Handling Systems</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Building &amp; Site Equipment</h4>
+                  <ul>
+                    <li><a href="#">Compactors &amp; Rollers</a></li>
+                    <li><a href="#">Pavers &amp; Asphalt Equipment</a></li>
+                    <li><a href="#">Concrete &amp; Mixing Equipment</a></li>
+                    <li><a href="#">Site Buildings &amp; Modular Structures</a></li>
+                    <li><a href="#">Generators &amp; Power Equipment</a></li>
+                    <li><a href="#">Safety &amp; Lighting Equipment</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Construction Support &amp; Parts</h4>
+                  <ul>
+                    <li><a href="#">Attachments</a></li>
+                    <li><a href="#">Wear Parts &amp; Undercarriage</a></li>
+                    <li><a href="#">Hydraulic Components</a></li>
+                    <li><a href="#">Fuel &amp; Fluid Systems</a></li>
+                    <li><a href="#">Tools &amp; Supplies</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mega-menu-footer">
+                <a href="#" class="mega-view-all">View All Construction ▶</a>
+                <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item has-mega">
+            <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Real Estate<span class="caret"></span></a>
+            <div class="mega-menu" id="mega-real-estate">
+              <div class="mega-menu-inner">
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Commercial &amp; Industrial Property</h4>
+                  <ul>
+                    <li><a href="#">Office</a></li>
+                    <li><a href="#">Retail</a></li>
+                    <li><a href="#">Industrial / Warehouse</a></li>
+                    <li><a href="#">Yards &amp; Lay-Down Space</a></li>
+                    <li><a href="#">Fabrication &amp; Shop Facilities</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Land</h4>
+                  <ul>
+                    <li><a href="#">Raw / Undeveloped Land</a></li>
+                    <li><a href="#">Ranch &amp; Farm Land</a></li>
+                    <li><a href="#">Development Sites</a></li>
+                    <li><a href="#">Mineral Rights &amp; Royalties</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Energy &amp; Oilfield Real Estate</h4>
+                  <ul>
+                    <li><a href="#">Well Site Locations</a></li>
+                    <li><a href="#">Pipeline &amp; Right-of-Way</a></li>
+                    <li><a href="#">Compressor Station Sites</a></li>
+                    <li><a href="#">Field Camps &amp; Housing</a></li>
+                    <li><a href="#">Storage &amp; Tank Farm Sites</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Residential</h4>
+                  <ul>
+                    <li><a href="#">Single-Family Homes</a></li>
+                    <li><a href="#">Multi-Family / Investment Properties</a></li>
+                    <li><a href="#">Land with Residence</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mega-menu-footer">
+                <a href="#" class="mega-view-all">View All Real Estate ▶</a>
+                <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item has-mega">
+            <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Info &amp; Services<span class="caret"></span></a>
+            <div class="mega-menu" id="mega-info-services">
+              <div class="mega-menu-inner">
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Industry Resources</h4>
+                  <ul>
+                    <li><a href="#">24-Hour Services</a></li>
+                    <li><a href="#">Appraisals</a></li>
+                    <li><a href="#">Custom Fabrication</a></li>
+                    <li><a href="#">Design / Engineering</a></li>
+                    <li><a href="#">Equipment Testing</a></li>
+                    <li><a href="#">Field Services</a></li>
+                    <li><a href="#">Fire &amp; Safety</a></li>
+                    <li><a href="#">Freight / Shipping / Storage</a></li>
+                    <li><a href="#">Rentals / Leasing</a></li>
+                    <li><a href="#">Repair Services</a></li>
+                    <li><a href="#">Welding Services</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Directories &amp; Marketplace Tools</h4>
+                  <ul>
+                    <li><a href="#">Find Companies</a></li>
+                    <li><a href="#">Auctions &amp; Events</a></li>
+                    <li><a href="#">Want-to-Buy Requests</a></li>
+                    <li><a href="#">Featured Listings</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4 class="mega-col-title">Company &amp; Account</h4>
+                  <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Advertise With Us</a></li>
+                    <li><a href="#">Sell Now / List an Asset</a></li>
+                    <li><a href="#">Sign Up</a></li>
+                    <li><a href="#">Login / My Account</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Help / Support</a></li>
+                    <li><a href="#">Site Map</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="mega-menu-footer">
+                <a href="#" class="mega-view-all">View All Info &amp; Services ▶</a>
+                <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="nav-utility">
+          <a href="#" class="btn-utility btn-sell">Sell/List an Asset</a>
+          <a href="#" class="btn-utility btn-login">Sign Up/Login</a>
+        </div>
+      </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <main class="marketplace-shell">
+      <section class="marketplace-grid" aria-label="Oilfield drill bit listings">
+        <aside class="browse-sidebar" aria-label="Browse Oilfield">
+          <h2 class="browse-title">Browse Oilfield</h2>
+          <div class="browse-select">
+            <div class="select-copy">
+              <span class="line-icon icon-rig" aria-hidden="true"></span>
+              <span>Oilfield</span>
+            </div>
+            <span class="chevron" aria-hidden="true"></span>
+          </div>
+
+          <div class="category-block">
+            <div class="category-heading">
+              <div class="heading-copy">
+                <span class="line-icon icon-drill" aria-hidden="true"></span>
+                <span>Drilling Equipment</span>
+              </div>
+              <span class="chevron up" aria-hidden="true"></span>
+            </div>
+            <div class="sub-list">
+              <a class="sub-item" href="#">Blowout Preventers</a>
+              <a class="sub-item" href="#">Block &amp; Hook Combos</a>
+              <a class="sub-item" href="#">Downhole / Fishing Tools</a>
+              <a class="sub-item" href="#">Drawworks</a>
+              <a class="sub-item active" href="oilfield-category.html">Drill Bits</a>
+              <a class="sub-item" href="#">Drilling Rigs</a>
+              <a class="sub-item" href="#">Land Rigs</a>
+              <a class="sub-item" href="#">Mud Pumps</a>
+              <a class="sub-item" href="#">Pipe Handling Equipment</a>
+              <a class="sub-item" href="#">Power Swivels</a>
+            </div>
+          </div>
+
+          <div class="collapsed-list">
+            <a class="category-row" href="#">
+              <span class="row-copy"><span class="line-icon icon-prod" aria-hidden="true"></span>Production Equipment</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </a>
+            <a class="category-row" href="#">
+              <span class="row-copy"><span class="line-icon icon-box" aria-hidden="true"></span>Support Equipment</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </a>
+            <a class="category-row" href="#">
+              <span class="row-copy"><span class="line-icon icon-pipe" aria-hidden="true"></span>Tubular Goods / Drill String</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </a>
+            <a class="category-row" href="#">
+              <span class="row-copy"><span class="line-icon icon-parts" aria-hidden="true"></span>Parts, Supplies &amp; Tools</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="trust-box">
+            <span class="trust-mark" aria-hidden="true"></span>
+            <div>
+              <h3>Verified Sellers. Quality Assets.</h3>
+              <p>All listings are reviewed for quality and authenticity.</p>
+            </div>
+          </div>
+        </aside>
+
+        <section class="products-panel">
+          <div class="catalog-head">
+            <div>
+              <div class="breadcrumb">
+                Home <span>&gt;</span> Oilfield <span>&gt;</span> Drilling Equipment <span>&gt;</span> <strong>Drill Bits</strong>
+              </div>
+              <h1 class="catalog-title">Drill Bits</h1>
+              <p class="catalog-copy">
+                Buy new and used drill bits for oilfield drilling operations. Top brands, various sizes and configurations available from trusted sellers.
+              </p>
+            </div>
+            <a class="save-search" href="#">
+              <span aria-hidden="true">&#9734;</span>
+              <span>Save Search</span>
+            </a>
+          </div>
+
+          <div class="filter-row" aria-label="Product filters">
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">C</span>Condition</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">B</span>Bit Type</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">S</span>Size</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">L</span>Connection</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">$</span>Price</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">P</span>Location</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">=</span>Sort: Newest</span><span class="chip-chevron"></span></button>
+          </div>
+
+          <div class="results-line">
+            <div class="result-count"><strong>128</strong> Results</div>
+            <div class="view-switch" aria-label="View mode">
+              <button class="view-button active" type="button" aria-label="Grid view">Grid</button>
+              <button class="view-button" type="button" aria-label="List view">List</button>
+            </div>
+          </div>
+
+          <div class="products-grid">
+            <article class="product-card">
+              <a class="product-image" href="product2.html">
+                <img src="https://i.pinimg.com/1200x/46/f2/20/46f220acc815cddc5c7d03b2459652ad.jpg" alt="13 5/8 Tricone Drill Bit" />
+                <span class="save-dot" aria-label="Save listing">&#9825;</span>
+                <div class="product-badges">
+                  <span class="badge">Photo 8</span>
+                </div>
+              </a>
+              <div class="product-body">
+                <h2 class="product-title">13 5/8 Tricone Drill Bit</h2>
+                <div class="product-meta">
+                  <span>Midland, TX</span>
+                  <span class="condition excellent">Excellent</span>
+                </div>
+                <div class="price-row">
+                  <div class="price">$24,500 <span>USD</span></div>
+                  <a class="card-button" href="product2.html">View Details</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a class="product-image" href="product2.html">
+                <img src="https://i.pinimg.com/1200x/cf/e4/6e/cfe46ec6cc086567f0574db8bf5e9903.jpg" alt="PDC Drill Bit Set" />
+                <span class="save-dot" aria-label="Save listing">&#9825;</span>
+                <div class="product-badges">
+                  <span class="badge">Photo 6</span>
+                </div>
+              </a>
+              <div class="product-body">
+                <h2 class="product-title">PDC Drill Bit Set</h2>
+                <div class="product-meta">
+                  <span>Houston, TX</span>
+                  <span class="condition like-new">Like New</span>
+                </div>
+                <div class="price-row">
+                  <div class="price">$18,750 <span>USD</span></div>
+                  <a class="card-button" href="product2.html">View Details</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a class="product-image" href="product2.html">
+                <img src="https://i.pinimg.com/1200x/3f/cf/d4/3fcfd4f52375c21a63d3614751c5d389.jpg" alt="Used Rock Bit Assembly" />
+                <span class="save-dot" aria-label="Save listing">&#9825;</span>
+                <div class="product-badges">
+                  <span class="badge">Photo 7</span>
+                </div>
+              </a>
+              <div class="product-body">
+                <h2 class="product-title">Used Rock Bit Assembly</h2>
+                <div class="product-meta">
+                  <span>Odessa, TX</span>
+                  <span class="condition good">Good</span>
+                </div>
+                <div class="price-row">
+                  <div class="price">$9,800 <span>USD</span></div>
+                  <a class="card-button" href="product2.html">Contact Seller</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a class="product-image" href="product2.html">
+                <img src="https://i.pinimg.com/736x/05/84/bd/0584bd47188f3ff1542f5cc7f7b2a268.jpg" alt="Oilfield Drill Bit Lot" />
+                <span class="save-dot" aria-label="Save listing">&#9825;</span>
+                <div class="product-badges">
+                  <span class="badge">Photo 10</span>
+                </div>
+              </a>
+              <div class="product-body">
+                <h2 class="product-title">Oilfield Drill Bit Lot</h2>
+                <div class="product-meta">
+                  <span>Williston, ND</span>
+                  <span class="condition fair">Fair</span>
+                </div>
+                <div class="price-row">
+                  <div class="price">$12,500 <span>USD</span></div>
+                  <a class="card-button" href="product2.html">View Details</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo" aria-label="PRO CAPITAL home">
+            <img src="Pro-Capital-full-logo-blk.png" alt="PRO CAPITAL logo" />
+          </a>
+          <p>
+            Global industrial asset marketplace and advisory firm connecting
+            institutional capital with high-value infrastructure, equipment,
+            and recovery opportunities.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="oilfield-category.html">Marketplace</a></li>
+            <li><a href="oilfield-category.html">Asset Listings</a></li>
+            <li><a href="#">Valuation Tools</a></li>
+            <li><a href="#">Market Analytics</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#process">Process</a></li>
+            <li><a href="index.html#insights">Insights</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#">Houston</a></li>
+            <li><a href="#">Ft Worth</a></li>
+            <li><a href="#">London</a></li>
+            <li><a href="#">Singapore</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2027 PRO CAPITAL GROUP. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#">LinkedIn</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll effect
+      const navbar = document.getElementById("navbar");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navOverlay = document.getElementById("navOverlay");
+      const megaItems = document.querySelectorAll(".nav-item.has-mega");
+      const leafLinks = document.querySelectorAll(
+        ".mega-menu a, .nav-utility a",
+      );
+      const isDesktopPointer = window.matchMedia(
+        "(hover: hover) and (pointer: fine) and (min-width: 1081px)",
+      );
+      let closeTimer = null;
+
+      function closeAllMega() {
+        megaItems.forEach((item) => {
+          item.classList.remove("mega-open");
+          item.querySelector(".nav-top-link").setAttribute("aria-expanded", "false");
+        });
+        if (isDesktopPointer.matches) navOverlay.classList.remove("active");
+      }
+
+      function openMega(item, topLink) {
+        megaItems.forEach((other) => {
+          if (other !== item) {
+            other.classList.remove("mega-open");
+            other.querySelector(".nav-top-link").setAttribute("aria-expanded", "false");
+          }
+        });
+        item.classList.add("mega-open");
+        topLink.setAttribute("aria-expanded", "true");
+        if (isDesktopPointer.matches) navOverlay.classList.add("active");
+      }
+
+      // Mobile / tablet drawer toggle
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navbar.classList.toggle("menu-open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        document.body.classList.toggle("nav-locked", isOpen);
+        navOverlay.classList.toggle("active", isOpen);
+        if (!isOpen) closeAllMega();
+      });
+
+      navOverlay.addEventListener("click", () => {
+        navbar.classList.remove("menu-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open menu");
+        document.body.classList.remove("nav-locked");
+        navOverlay.classList.remove("active");
+        closeAllMega();
+      });
+
+      leafLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navbar.classList.remove("menu-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open menu");
+          document.body.classList.remove("nav-locked");
+          navOverlay.classList.remove("active");
+          closeAllMega();
+        });
+      });
+
+      // Mega-menu open/close: click toggles everywhere; hover enhances desktop with a
+      // short close-delay so moving the mouse from the tab down into the panel
+      // doesn't flicker shut.
+      megaItems.forEach((item) => {
+        const topLink = item.querySelector(".nav-top-link");
+
+        topLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          const isOpen = item.classList.contains("mega-open");
+          if (isOpen) {
+            closeAllMega();
+          } else {
+            openMega(item, topLink);
+          }
+        });
+
+        item.addEventListener("mouseenter", () => {
+          if (!isDesktopPointer.matches) return;
+          clearTimeout(closeTimer);
+          openMega(item, topLink);
+        });
+
+        item.addEventListener("mouseleave", () => {
+          if (!isDesktopPointer.matches) return;
+          clearTimeout(closeTimer);
+          closeTimer = setTimeout(() => {
+            item.classList.remove("mega-open");
+            topLink.setAttribute("aria-expanded", "false");
+            const stillOpen = document.querySelector(".nav-item.mega-open");
+            if (!stillOpen) navOverlay.classList.remove("active");
+          }, 220);
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".nav-item.has-mega") && !e.target.closest("#navOverlay")) {
+          closeAllMega();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 1080 && navbar.classList.contains("menu-open")) {
+          navbar.classList.remove("menu-open");
+          document.body.classList.remove("nav-locked");
+          navOverlay.classList.remove("active");
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+    </script>
+  </body>
+</html>

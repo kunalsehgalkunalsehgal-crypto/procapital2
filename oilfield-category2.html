@@ -1,0 +1,1721 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRO CAPITAL | Oilfield Drill Bits</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --deep-black: #0d0d0d;
+        --graphite: #2c2c2c;
+        --warm-grey: #b8b8b8;
+        --gold: #c6a15b;
+        --gold-light: #d4b76a;
+        --white: #f8f8f8;
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --transition: all 0.4s var(--ease-smooth);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(circle at 15% 8%, rgba(198, 161, 91, 0.09), transparent 28%),
+          linear-gradient(180deg, #070707 0%, #0d0d0d 54%, #070707 100%);
+        color: var(--white);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 8px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+        background: #00000070;
+      }
+
+      .navbar.scrolled {
+        background: rgba(13, 13, 13, 0.95);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar .logo {
+        width: 132px;
+        height: 80px;
+        flex: 0 0 auto;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar .logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: left center;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+
+      .nav-item {
+        position: static;
+      }
+
+      .nav-top-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 14px;
+        color: var(--warm-grey);
+        border-radius: 3px;
+        font-size: 0.8rem;
+        font-weight: 400;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+
+      .nav-top-link .caret {
+        width: 6px;
+        height: 6px;
+        border-right: 1px solid currentColor;
+        border-bottom: 1px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+        transition: transform 0.3s var(--ease-out);
+        opacity: 0.65;
+      }
+
+      .nav-item.mega-open .nav-top-link,
+      .nav-top-link:hover {
+        color: var(--gold);
+        background: rgba(198, 161, 91, 0.08);
+      }
+
+      .nav-item.mega-open .nav-top-link .caret {
+        transform: rotate(-135deg) translateY(1px);
+        opacity: 1;
+      }
+
+      .nav-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+        z-index: 900;
+      }
+
+      .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mega-menu {
+        position: fixed;
+        top: 96px;
+        left: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(15, 15, 15, 0.99) 0%, rgba(10, 10, 10, 0.99) 100%);
+        backdrop-filter: blur(28px);
+        border-bottom: 1px solid rgba(198, 161, 91, 0.2);
+        box-shadow: 0 28px 60px rgba(0, 0, 0, 0.42);
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: max-height 0.45s var(--ease-out), opacity 0.28s ease, transform 0.28s ease;
+        z-index: 1001;
+      }
+
+      .nav-item.mega-open .mega-menu {
+        max-height: 610px;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .mega-menu::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+        opacity: 0.6;
+      }
+
+      .mega-menu-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 38px 60px 20px;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(170px, 1fr));
+        gap: 30px;
+      }
+
+      .mega-col-title {
+        color: var(--gold);
+        font-size: 0.74rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+
+      .mega-col li {
+        margin-bottom: 8px;
+      }
+
+      .mega-col a {
+        color: var(--warm-grey);
+        font-size: 0.86rem;
+        font-weight: 300;
+        transition: var(--transition);
+      }
+
+      .mega-col a:hover {
+        color: var(--white);
+        padding-left: 6px;
+      }
+
+      .mega-menu-footer {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 16px 60px 26px;
+        display: flex;
+        gap: 36px;
+        border-top: 1px solid rgba(198, 161, 91, 0.12);
+      }
+
+      .mega-menu-footer a {
+        color: var(--gold);
+        font-size: 0.74rem;
+        font-weight: 500;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+      }
+
+      .btn-utility {
+        padding: 9px 20px;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 1.3px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: var(--transition);
+      }
+
+      .btn-sell {
+        color: var(--deep-black);
+        background: var(--gold);
+      }
+
+      .btn-login {
+        color: var(--white);
+        border: 1px solid rgba(198, 161, 91, 0.42);
+      }
+
+      .btn-utility:hover {
+        transform: translateY(-2px);
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(198, 161, 91, 0.45);
+        background: rgba(13, 13, 13, 0.72);
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 1px;
+        background: var(--gold);
+        transition: var(--transition);
+      }
+
+      .navbar.menu-open .menu-toggle span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      .navbar.menu-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .navbar.menu-open .menu-toggle span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      .marketplace-shell {
+        width: min(1500px, calc(100% - 44px));
+        margin: 0 auto;
+        padding: 142px 0 76px;
+      }
+
+      .marketplace-kicker {
+        color: var(--gold);
+        font-size: 0.74rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .marketplace-grid {
+        display: grid;
+        grid-template-columns: 338px minmax(0, 1fr);
+        gap: 30px;
+        align-items: start;
+      }
+
+      .browse-sidebar {
+        position: sticky;
+        top: 118px;
+        padding: 20px 18px;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+        background:
+          linear-gradient(180deg, rgba(14, 20, 24, 0.96), rgba(8, 10, 12, 0.98)),
+          radial-gradient(circle at 0% 20%, rgba(198, 161, 91, 0.1), transparent 34%);
+        box-shadow: 24px 0 50px rgba(0, 0, 0, 0.25);
+        min-height: 650px;
+      }
+
+      .browse-title {
+        color: var(--white);
+        font-size: 0.86rem;
+        letter-spacing: 2.8px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+
+      .browse-select {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 0 18px;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 5px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+        color: var(--white);
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .browse-select .select-copy {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .line-icon {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 20px;
+        color: var(--gold);
+      }
+
+      .line-icon::before,
+      .line-icon::after {
+        content: "";
+        position: absolute;
+        border: 1.5px solid currentColor;
+      }
+
+      .icon-rig::before {
+        left: 7px;
+        top: 1px;
+        width: 6px;
+        height: 18px;
+        transform: skew(-12deg);
+      }
+
+      .icon-rig::after {
+        left: 2px;
+        right: 2px;
+        bottom: 1px;
+        height: 5px;
+      }
+
+      .icon-drill::before {
+        left: 3px;
+        top: 3px;
+        width: 14px;
+        height: 10px;
+        border-radius: 8px 8px 2px 2px;
+        transform: rotate(-28deg);
+      }
+
+      .icon-drill::after {
+        right: 0;
+        bottom: 1px;
+        width: 11px;
+        height: 2px;
+        transform: rotate(44deg);
+      }
+
+      .icon-prod::before {
+        left: 6px;
+        top: 2px;
+        width: 6px;
+        height: 15px;
+      }
+
+      .icon-prod::after {
+        left: 3px;
+        top: 5px;
+        width: 12px;
+        height: 5px;
+        border-radius: 8px;
+      }
+
+      .icon-box::before {
+        inset: 5px 2px 3px;
+        border-radius: 3px;
+      }
+
+      .icon-box::after {
+        left: 6px;
+        top: 2px;
+        width: 8px;
+        height: 6px;
+        border-radius: 3px 3px 0 0;
+      }
+
+      .icon-pipe::before {
+        left: 2px;
+        top: 8px;
+        width: 16px;
+        height: 5px;
+        border-radius: 6px;
+        transform: rotate(-43deg);
+      }
+
+      .icon-parts::before {
+        left: 2px;
+        top: 5px;
+        width: 16px;
+        height: 12px;
+      }
+
+      .icon-parts::after {
+        left: 5px;
+        top: 8px;
+        width: 10px;
+        height: 1px;
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .chevron {
+        width: 9px;
+        height: 9px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+      }
+
+      .chevron.up {
+        transform: rotate(-135deg) translateY(-1px);
+      }
+
+      .category-block {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .category-heading,
+      .category-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        min-height: 44px;
+        padding: 0 16px;
+      }
+
+      .category-heading {
+        color: var(--gold);
+        background: linear-gradient(90deg, rgba(198, 161, 91, 0.22), rgba(198, 161, 91, 0.08));
+        font-weight: 700;
+      }
+
+      .heading-copy,
+      .row-copy {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sub-list {
+        position: relative;
+        padding: 8px 0 10px 50px;
+      }
+
+      .sub-list::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 15px;
+        left: 25px;
+        width: 1px;
+        background: rgba(184, 184, 184, 0.32);
+      }
+
+      .sub-item {
+        position: relative;
+        min-height: 29px;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+        color: var(--warm-grey);
+        border-radius: 5px;
+        font-size: 0.98rem;
+      }
+
+      .sub-item::before {
+        content: "";
+        position: absolute;
+        left: -25px;
+        top: 50%;
+        width: 10px;
+        height: 1px;
+        background: rgba(184, 184, 184, 0.32);
+      }
+
+      .sub-item.active {
+        color: var(--gold-light);
+        background: linear-gradient(90deg, rgba(198, 161, 91, 0.34), rgba(198, 161, 91, 0.19));
+        font-weight: 700;
+      }
+
+      .sub-item.active::after {
+        content: "";
+        position: absolute;
+        left: -31px;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--gold-light);
+        transform: translateY(-50%);
+        box-shadow: 0 0 0 3px rgba(198, 161, 91, 0.15);
+      }
+
+      .collapsed-list {
+        display: grid;
+        gap: 4px;
+        margin-top: 4px;
+      }
+
+      .category-row {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.24);
+        color: var(--white);
+      }
+
+      .trust-box {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: 34px 1fr;
+        gap: 14px;
+        padding: 20px 16px;
+        border: 1px solid rgba(198, 161, 91, 0.38);
+        border-radius: 5px;
+        color: var(--warm-grey);
+      }
+
+      .trust-mark {
+        position: relative;
+        width: 34px;
+        height: 42px;
+        border: 2px solid var(--gold);
+        border-radius: 18px 18px 10px 10px;
+      }
+
+      .trust-mark::before {
+        content: "*";
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 1.3rem;
+      }
+
+      .trust-box h3 {
+        color: var(--gold-light);
+        font-size: 0.8rem;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      .trust-box p {
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+
+      .products-panel {
+        min-width: 0;
+      }
+
+      .catalog-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: start;
+        margin-bottom: 26px;
+      }
+
+      .breadcrumb {
+        color: var(--warm-grey);
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        font-size: 0.86rem;
+        margin-bottom: 18px;
+      }
+
+      .breadcrumb span {
+        color: rgba(184, 184, 184, 0.48);
+      }
+
+      .breadcrumb strong {
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      .catalog-title {
+        font-size: clamp(2.3rem, 3.4vw, 3.05rem);
+        line-height: 1;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .catalog-copy {
+        max-width: 660px;
+        color: var(--warm-grey);
+        font-size: 1rem;
+        line-height: 1.45;
+      }
+
+      .save-search {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 46px;
+        padding: 0 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--white);
+        font-size: 0.96rem;
+        white-space: nowrap;
+        transition: var(--transition);
+      }
+
+      .save-search:hover {
+        border-color: rgba(198, 161, 91, 0.55);
+        color: var(--gold-light);
+      }
+
+      .result-count {
+        color: var(--white);
+        font-size: 0.98rem;
+        margin-bottom: 20px;
+      }
+
+      .result-count strong {
+        color: var(--gold-light);
+        font-weight: 700;
+      }
+
+      .filter-row {
+        display: flex;
+        gap: 11px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+
+      .filter-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        min-height: 44px;
+        padding: 0 15px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 4px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
+        color: var(--white);
+        font: inherit;
+        font-size: 0.94rem;
+        min-width: 140px;
+        justify-content: space-between;
+        cursor: pointer;
+      }
+
+      .filter-chip .chip-copy {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .chip-icon {
+        color: var(--warm-grey);
+        font-size: 1rem;
+      }
+
+      .chip-chevron {
+        width: 8px;
+        height: 8px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+        color: var(--warm-grey);
+      }
+
+      .results-line {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .view-switch {
+        display: inline-flex;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 4px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .view-button {
+        width: 58px;
+        height: 38px;
+        border: 0;
+        display: grid;
+        place-items: center;
+        background: transparent;
+        color: var(--warm-grey);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .view-button.active {
+        background: rgba(198, 161, 91, 0.18);
+        color: var(--gold-light);
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .product-card {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+        background: linear-gradient(180deg, rgba(21, 28, 32, 0.96), rgba(13, 18, 21, 0.98));
+        overflow: hidden;
+        transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(198, 161, 91, 0.34);
+        background: linear-gradient(180deg, rgba(198, 161, 91, 0.08), rgba(255, 255, 255, 0.025));
+      }
+
+      .product-image {
+        position: relative;
+        aspect-ratio: 1.12;
+        background: #111;
+        overflow: hidden;
+        display: block;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 0.4s var(--ease-out);
+      }
+
+      .product-card:hover .product-image img {
+        transform: scale(1.045);
+      }
+
+      .product-badges {
+        position: absolute;
+        inset: auto 12px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 0 8px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.64);
+        color: var(--white);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        backdrop-filter: blur(10px);
+      }
+
+      .save-dot {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border: 0;
+        background: transparent;
+        color: var(--white);
+        font-size: 1.9rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75);
+      }
+
+      .product-body {
+        padding: 17px 16px 16px;
+      }
+
+      .product-title {
+        color: var(--white);
+        font-size: 1.12rem;
+        line-height: 1.22;
+        margin-bottom: 14px;
+      }
+
+      .product-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        color: var(--warm-grey);
+        font-size: 0.93rem;
+        margin-bottom: 22px;
+      }
+
+      .condition {
+        display: inline-flex;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 8px;
+        border-radius: 4px;
+        font-size: 0.86rem;
+      }
+
+      .condition.excellent,
+      .condition.like-new {
+        color: #62d982;
+        border: 1px solid rgba(98, 217, 130, 0.5);
+        background: rgba(98, 217, 130, 0.1);
+      }
+
+      .condition.good {
+        color: #52b7ff;
+        border: 1px solid rgba(82, 183, 255, 0.5);
+        background: rgba(82, 183, 255, 0.1);
+      }
+
+      .condition.fair {
+        color: var(--warm-grey);
+        border: 1px solid rgba(184, 184, 184, 0.35);
+        background: rgba(184, 184, 184, 0.07);
+      }
+
+      .price-row {
+        display: block;
+      }
+
+      .price {
+        color: var(--gold-light);
+        font-weight: 700;
+        font-size: 1.48rem;
+        margin-bottom: 16px;
+      }
+
+      .price span {
+        display: inline;
+        color: var(--warm-grey);
+        font-size: 0.78rem;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-left: 4px;
+      }
+
+      .card-button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 44px;
+        padding: 0 14px;
+        border: 1px solid rgba(198, 161, 91, 0.56);
+        border-radius: 4px;
+        color: var(--gold-light);
+        font-size: 0.92rem;
+        font-weight: 700;
+        transition: var(--transition);
+        white-space: nowrap;
+      }
+
+      .card-button:hover {
+        color: var(--deep-black);
+        background: var(--gold);
+      }
+
+      .footer {
+        background:
+          linear-gradient(180deg, rgba(198, 161, 91, 0.08), transparent 34%),
+          linear-gradient(135deg, #080808 0%, #111 52%, #070707 100%);
+        padding: 86px 60px 34px;
+        border-top: 1px solid rgba(198, 161, 91, 0.18);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 1.45fr) repeat(3, minmax(140px, 1fr));
+        gap: 44px;
+        max-width: 1200px;
+        margin: 0 auto 52px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-logo {
+        width: 85px;
+        height: 85px;
+        display: inline-flex;
+        margin-bottom: 24px;
+      }
+
+      .footer-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .footer-brand p {
+        color: var(--warm-grey);
+        font-size: 0.92rem;
+        line-height: 1.8;
+        font-weight: 300;
+        max-width: 300px;
+      }
+
+      .footer-col h4 {
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+        font-weight: 500;
+      }
+
+      .footer-col li {
+        margin-bottom: 5px;
+      }
+
+      .footer-col a {
+        color: var(--warm-grey);
+        font-size: 0.88rem;
+        transition: var(--transition);
+        font-weight: 300;
+      }
+
+      .footer-col a:hover {
+        color: var(--white);
+        padding-left: 4px;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(198, 161, 91, 0.14);
+        padding-top: 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-bottom p {
+        color: var(--warm-grey);
+        font-size: 0.72rem;
+        font-weight: 300;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .social-links a {
+        color: var(--warm-grey);
+        font-size: 0.72rem;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        color: var(--gold);
+      }
+
+      @media (max-width: 1320px) {
+        .products-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 1080px) {
+        body.nav-locked {
+          overflow: hidden;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          flex-shrink: 0;
+          position: relative;
+          z-index: 1002;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: min(420px, 86vw);
+          height: 100vh;
+          padding: 98px 0 30px;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          background: rgba(10, 10, 10, 0.98);
+          border-left: 1px solid rgba(198, 161, 91, 0.2);
+          transform: translateX(105%);
+          transition: transform 0.38s var(--ease-out);
+          overflow-y: auto;
+          z-index: 1001;
+        }
+
+        .navbar.menu-open .nav-links {
+          transform: translateX(0);
+        }
+
+        .nav-top-link {
+          width: 100%;
+          justify-content: space-between;
+          padding: 18px 26px;
+        }
+
+        .utility-item {
+          padding: 18px 26px 0;
+        }
+
+        .btn-utility {
+          display: block;
+          text-align: center;
+          margin-bottom: 10px;
+        }
+
+        .mega-menu {
+          position: static;
+          width: 100%;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          background: rgba(0, 0, 0, 0.25);
+          border: none;
+          box-shadow: none;
+        }
+
+        .nav-item.mega-open .mega-menu {
+          max-height: 3000px;
+        }
+
+        .mega-menu-inner {
+          padding: 8px 26px 12px 34px;
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .mega-menu-footer {
+          padding: 4px 26px 20px 34px;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .marketplace-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .browse-sidebar {
+          position: relative;
+          top: auto;
+          min-height: auto;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar,
+        .navbar.scrolled {
+          padding: 8px 22px;
+          background: rgba(13, 13, 13, 0.9);
+          backdrop-filter: blur(18px);
+        }
+
+        .navbar .logo {
+          width: 104px;
+          height: 63px;
+        }
+
+        .marketplace-shell {
+          width: min(100% - 28px, 1500px);
+          padding-top: 112px;
+        }
+
+        .catalog-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+
+        .footer {
+          padding: 58px 22px 30px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 18px;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <a href="index.html" class="logo" aria-label="PRO CAPITAL home">
+        <img src="Pro-Capital-full-logo-blk.png" alt="PRO CAPITAL logo" />
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Oilfield<span class="caret"></span></a>
+          <div class="mega-menu">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Drilling Equipment</h4>
+                <ul>
+                  <li><a href="#">Blowout Preventers</a></li>
+                  <li><a href="#">Block &amp; Hook Combos</a></li>
+                  <li><a href="#">Downhole / Fishing Tools</a></li>
+                  <li><a href="#">Drawworks</a></li>
+                  <li><a href="oilfield-category.html">Drill Bits</a></li>
+                  <li><a href="#">Drilling Rigs</a></li>
+                  <li><a href="#">Land Rigs</a></li>
+                  <li><a href="#">Mud Pumps</a></li>
+                  <li><a href="#">Pipe Handling Equipment</a></li>
+                  <li><a href="#">Power Swivels</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Production Equipment</h4>
+                <ul>
+                  <li><a href="#">Artificial Lift</a></li>
+                  <li><a href="#">Coil Tubing Units</a></li>
+                  <li><a href="#">Compression Equipment</a></li>
+                  <li><a href="#">Frac Tanks</a></li>
+                  <li><a href="#">Gas Compressors</a></li>
+                  <li><a href="#">Pump Jacks / Pumping Units</a></li>
+                  <li><a href="#">Separators / Filters</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Support Equipment</h4>
+                <ul>
+                  <li><a href="#">Buildings</a></li>
+                  <li><a href="#">Containment Systems</a></li>
+                  <li><a href="#">Engines - Diesel</a></li>
+                  <li><a href="#">Generators / Electric Power</a></li>
+                  <li><a href="#">Hydraulic Power Units</a></li>
+                  <li><a href="#">Safety &amp; Lighting Equipment</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Tubular Goods</h4>
+                <ul>
+                  <li><a href="#">Casing &amp; Tubing</a></li>
+                  <li><a href="#">Coiled Tubing</a></li>
+                  <li><a href="#">Drill Collars</a></li>
+                  <li><a href="#">Drill Pipe</a></li>
+                  <li><a href="#">Line Pipe</a></li>
+                  <li><a href="#">Subs / Crossovers</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Parts &amp; Tools</h4>
+                <ul>
+                  <li><a href="#">Actuators</a></li>
+                  <li><a href="#">Filters / Fluids</a></li>
+                  <li><a href="#">Gate Valves</a></li>
+                  <li><a href="#">Hardware / Fasteners</a></li>
+                  <li><a href="#">Tools</a></li>
+                  <li><a href="#">Wear Parts</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="oilfield-category.html">View All Oilfield</a>
+              <a href="#">Want-to-Buy</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Transportation<span class="caret"></span></a>
+          <div class="mega-menu">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Oilfield &amp; Heavy Trucks</h4>
+                <ul>
+                  <li><a href="#">Boom / Bucket Trucks</a></li>
+                  <li><a href="#">Day Cab Trucks</a></li>
+                  <li><a href="#">Flatbed Trucks</a></li>
+                  <li><a href="#">Sleeper Trucks</a></li>
+                  <li><a href="#">Vacuum Trucks</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Trailers</h4>
+                <ul>
+                  <li><a href="#">Drop / Step Deck Trailers</a></li>
+                  <li><a href="#">Flatbed Trailers</a></li>
+                  <li><a href="#">Lowboy Trailers</a></li>
+                  <li><a href="#">Vacuum Trailers</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="#">View All Transportation</a>
+              <a href="#">Want-to-Buy</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Construction<span class="caret"></span></a>
+          <div class="mega-menu">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Earthmoving Equipment</h4>
+                <ul>
+                  <li><a href="#">Excavators</a></li>
+                  <li><a href="#">Bulldozers</a></li>
+                  <li><a href="#">Wheel Loaders</a></li>
+                  <li><a href="#">Motor Graders</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Cranes &amp; Handling</h4>
+                <ul>
+                  <li><a href="#">Crawler Cranes</a></li>
+                  <li><a href="#">Rough Terrain Cranes</a></li>
+                  <li><a href="#">Forklifts</a></li>
+                  <li><a href="#">Telehandlers</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="#">View All Construction</a>
+              <a href="#">Want-to-Buy</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Real Estate<span class="caret"></span></a>
+          <div class="mega-menu">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Commercial Property</h4>
+                <ul>
+                  <li><a href="#">Office</a></li>
+                  <li><a href="#">Retail</a></li>
+                  <li><a href="#">Industrial / Warehouse</a></li>
+                  <li><a href="#">Yards &amp; Lay-Down Space</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Land</h4>
+                <ul>
+                  <li><a href="#">Raw / Undeveloped Land</a></li>
+                  <li><a href="#">Ranch &amp; Farm Land</a></li>
+                  <li><a href="#">Development Sites</a></li>
+                  <li><a href="#">Mineral Rights</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="#">View All Real Estate</a>
+              <a href="#">Want-to-Buy</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Info &amp; Services<span class="caret"></span></a>
+          <div class="mega-menu">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Industry Resources</h4>
+                <ul>
+                  <li><a href="#">24-Hour Services</a></li>
+                  <li><a href="#">Appraisals</a></li>
+                  <li><a href="#">Equipment Testing</a></li>
+                  <li><a href="#">Field Services</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Company &amp; Account</h4>
+                <ul>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Sell Now / List an Asset</a></li>
+                  <li><a href="#">Login / My Account</a></li>
+                  <li><a href="#">Contact Us</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="#">View All Info &amp; Services</a>
+              <a href="#">Want-to-Buy</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item utility-item">
+          <a href="#" class="btn-utility btn-sell">Sell/List an Asset</a>
+        </li>
+        <li class="nav-item utility-item">
+          <a href="#" class="btn-utility btn-login">Sign Up/Login</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <main class="marketplace-shell">
+      <section class="marketplace-grid" aria-label="Oilfield drill bit listings">
+        <aside class="browse-sidebar" aria-label="Browse Oilfield">
+          <h2 class="browse-title">Browse Oilfield</h2>
+          <div class="browse-select">
+            <div class="select-copy">
+              <span class="line-icon icon-rig" aria-hidden="true"></span>
+              <span>Oilfield</span>
+            </div>
+            <span class="chevron" aria-hidden="true"></span>
+          </div>
+
+          <div class="category-block">
+            <div class="category-heading">
+              <div class="heading-copy">
+                <span class="line-icon icon-drill" aria-hidden="true"></span>
+                <span>Drilling Equipment</span>
+              </div>
+              <span class="chevron up" aria-hidden="true"></span>
+            </div>
+            <div class="sub-list">
+              <a class="sub-item" href="#">Blowout Preventers</a>
+              <a class="sub-item" href="#">Block &amp; Hook Combos</a>
+              <a class="sub-item" href="#">Downhole / Fishing Tools</a>
+              <a class="sub-item" href="#">Drawworks</a>
+              <a class="sub-item active" href="oilfield-category.html">Drill Bits</a>
+              <a class="sub-item" href="#">Drilling Rigs</a>
+              <a class="sub-item" href="#">Land Rigs</a>
+              <a class="sub-item" href="#">Mud Pumps</a>
+              <a class="sub-item" href="#">Pipe Handling Equipment</a>
+              <a class="sub-item" href="#">Power Swivels</a>
+            </div>
+          </div>
+
+          <div class="collapsed-list">
+            <a class="category-row" href="#">
+              <span class="row-copy"><span class="line-icon icon-prod" aria-hidden="true"></span>Production Equipment</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </a>
+            <a class="category-row" href="#">
+              <span class="row-copy"><span class="line-icon icon-box" aria-hidden="true"></span>Support Equipment</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </a>
+            <a class="category-row" href="#">
+              <span class="row-copy"><span class="line-icon icon-pipe" aria-hidden="true"></span>Tubular Goods / Drill String</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </a>
+            <a class="category-row" href="#">
+              <span class="row-copy"><span class="line-icon icon-parts" aria-hidden="true"></span>Parts, Supplies &amp; Tools</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="trust-box">
+            <span class="trust-mark" aria-hidden="true"></span>
+            <div>
+              <h3>Verified Sellers. Quality Assets.</h3>
+              <p>All listings are reviewed for quality and authenticity.</p>
+            </div>
+          </div>
+        </aside>
+
+        <section class="products-panel">
+          <div class="catalog-head">
+            <div>
+              <div class="breadcrumb">
+                Home <span>&gt;</span> Oilfield <span>&gt;</span> Drilling Equipment <span>&gt;</span> <strong>Drill Bits</strong>
+              </div>
+              <h1 class="catalog-title">Drill Bits</h1>
+              <p class="catalog-copy">
+                Buy new and used drill bits for oilfield drilling operations. Top brands, various sizes and configurations available from trusted sellers.
+              </p>
+            </div>
+            <a class="save-search" href="#">
+              <span aria-hidden="true">&#9734;</span>
+              <span>Save Search</span>
+            </a>
+          </div>
+
+          <div class="filter-row" aria-label="Product filters">
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">C</span>Condition</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">B</span>Bit Type</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">S</span>Size</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">L</span>Connection</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">$</span>Price</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">P</span>Location</span><span class="chip-chevron"></span></button>
+            <button class="filter-chip" type="button"><span class="chip-copy"><span class="chip-icon">=</span>Sort: Newest</span><span class="chip-chevron"></span></button>
+          </div>
+
+          <div class="results-line">
+            <div class="result-count"><strong>128</strong> Results</div>
+            <div class="view-switch" aria-label="View mode">
+              <button class="view-button active" type="button" aria-label="Grid view">Grid</button>
+              <button class="view-button" type="button" aria-label="List view">List</button>
+            </div>
+          </div>
+
+          <div class="products-grid">
+            <article class="product-card">
+              <a class="product-image" href="product.html">
+                <img src="https://i.pinimg.com/736x/8e/4d/fd/8e4dfdecd26d66f77c8406b7700ccfff.jpg" alt="13 5/8 Tricone Drill Bit" />
+                <span class="save-dot" aria-label="Save listing">&#9825;</span>
+                <div class="product-badges">
+                  <span class="badge">Photo 8</span>
+                </div>
+              </a>
+              <div class="product-body">
+                <h2 class="product-title">13 5/8 Tricone Drill Bit</h2>
+                <div class="product-meta">
+                  <span>Midland, TX</span>
+                  <span class="condition excellent">Excellent</span>
+                </div>
+                <div class="price-row">
+                  <div class="price">$24,500 <span>USD</span></div>
+                  <a class="card-button" href="product.html">View Details</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a class="product-image" href="product.html">
+                <img src="https://images.unsplash.com/photo-1557664218-80e55638ef5f?auto=format&fit=crop&w=900&q=80" alt="PDC Drill Bit Set" />
+                <span class="save-dot" aria-label="Save listing">&#9825;</span>
+                <div class="product-badges">
+                  <span class="badge">Photo 6</span>
+                </div>
+              </a>
+              <div class="product-body">
+                <h2 class="product-title">PDC Drill Bit Set</h2>
+                <div class="product-meta">
+                  <span>Houston, TX</span>
+                  <span class="condition like-new">Like New</span>
+                </div>
+                <div class="price-row">
+                  <div class="price">$18,750 <span>USD</span></div>
+                  <a class="card-button" href="product.html">View Details</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a class="product-image" href="product.html">
+                <img src="https://images.unsplash.com/photo-1510321911291-397bf727da2e?auto=format&fit=crop&w=900&q=80" alt="Used Rock Bit Assembly" />
+                <span class="save-dot" aria-label="Save listing">&#9825;</span>
+                <div class="product-badges">
+                  <span class="badge">Photo 7</span>
+                </div>
+              </a>
+              <div class="product-body">
+                <h2 class="product-title">Used Rock Bit Assembly</h2>
+                <div class="product-meta">
+                  <span>Odessa, TX</span>
+                  <span class="condition good">Good</span>
+                </div>
+                <div class="price-row">
+                  <div class="price">$9,800 <span>USD</span></div>
+                  <a class="card-button" href="product.html">Contact Seller</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <a class="product-image" href="product.html">
+                <img src="img 2.png" alt="Oilfield Drill Bit Lot" />
+                <span class="save-dot" aria-label="Save listing">&#9825;</span>
+                <div class="product-badges">
+                  <span class="badge">Photo 10</span>
+                </div>
+              </a>
+              <div class="product-body">
+                <h2 class="product-title">Oilfield Drill Bit Lot</h2>
+                <div class="product-meta">
+                  <span>Williston, ND</span>
+                  <span class="condition fair">Fair</span>
+                </div>
+                <div class="price-row">
+                  <div class="price">$12,500 <span>USD</span></div>
+                  <a class="card-button" href="product.html">View Details</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo" aria-label="PRO CAPITAL home">
+            <img src="Pro-Capital-full-logo-blk.png" alt="PRO CAPITAL logo" />
+          </a>
+          <p>
+            Global industrial asset marketplace and advisory firm connecting
+            institutional capital with high-value infrastructure, equipment,
+            and recovery opportunities.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="oilfield-category.html">Marketplace</a></li>
+            <li><a href="oilfield-category.html">Asset Listings</a></li>
+            <li><a href="#">Valuation Tools</a></li>
+            <li><a href="#">Market Analytics</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#process">Process</a></li>
+            <li><a href="index.html#insights">Insights</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#">Houston</a></li>
+            <li><a href="#">Ft Worth</a></li>
+            <li><a href="#">London</a></li>
+            <li><a href="#">Singapore</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2027 PRO CAPITAL GROUP. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#">LinkedIn</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const navbar = document.getElementById("navbar");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navOverlay = document.getElementById("navOverlay");
+      const megaItems = document.querySelectorAll(".nav-item.has-mega");
+      const leafLinks = document.querySelectorAll(".mega-menu a, .utility-item a");
+      const isDesktopPointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1081px)");
+      let closeTimer = null;
+
+      function closeAllMega() {
+        megaItems.forEach((item) => {
+          item.classList.remove("mega-open");
+          item.querySelector(".nav-top-link").setAttribute("aria-expanded", "false");
+        });
+        if (isDesktopPointer.matches) navOverlay.classList.remove("active");
+      }
+
+      function openMega(item, topLink) {
+        megaItems.forEach((other) => {
+          if (other !== item) {
+            other.classList.remove("mega-open");
+            other.querySelector(".nav-top-link").setAttribute("aria-expanded", "false");
+          }
+        });
+        item.classList.add("mega-open");
+        topLink.setAttribute("aria-expanded", "true");
+        if (isDesktopPointer.matches) navOverlay.classList.add("active");
+      }
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navbar.classList.toggle("menu-open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        document.body.classList.toggle("nav-locked", isOpen);
+        navOverlay.classList.toggle("active", isOpen);
+        if (!isOpen) closeAllMega();
+      });
+
+      navOverlay.addEventListener("click", () => {
+        navbar.classList.remove("menu-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open menu");
+        document.body.classList.remove("nav-locked");
+        navOverlay.classList.remove("active");
+        closeAllMega();
+      });
+
+      leafLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navbar.classList.remove("menu-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open menu");
+          document.body.classList.remove("nav-locked");
+          navOverlay.classList.remove("active");
+          closeAllMega();
+        });
+      });
+
+      megaItems.forEach((item) => {
+        const topLink = item.querySelector(".nav-top-link");
+
+        topLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (item.classList.contains("mega-open")) {
+            closeAllMega();
+          } else {
+            openMega(item, topLink);
+          }
+        });
+
+        item.addEventListener("mouseenter", () => {
+          if (!isDesktopPointer.matches) return;
+          clearTimeout(closeTimer);
+          openMega(item, topLink);
+        });
+
+        item.addEventListener("mouseleave", () => {
+          if (!isDesktopPointer.matches) return;
+          clearTimeout(closeTimer);
+          closeTimer = setTimeout(() => {
+            item.classList.remove("mega-open");
+            topLink.setAttribute("aria-expanded", "false");
+            const stillOpen = document.querySelector(".nav-item.mega-open");
+            if (!stillOpen) navOverlay.classList.remove("active");
+          }, 220);
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".nav-item.has-mega") && !e.target.closest("#navOverlay")) {
+          closeAllMega();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 1080 && navbar.classList.contains("menu-open")) {
+          navbar.classList.remove("menu-open");
+          document.body.classList.remove("nav-locked");
+          navOverlay.classList.remove("active");
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 50);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2495 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRO CAPITAL | Global Industrial Asset Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --deep-black: #0d0d0d;
+        --graphite: #2c2c2c;
+        --warm-grey: #b8b8b8;
+        --gold: #c6a15b;
+        --gold-light: #d4b76a;
+        --white: #f8f8f8;
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --transition: all 0.4s var(--ease-smooth);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--deep-black);
+        color: var(--white);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      ::selection {
+        background: rgba(198, 161, 91, 0.32);
+        color: var(--white);
+      }
+
+      /* ===== NAVIGATION ===== */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        padding: 8px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+        background: #00000070;
+        animation: navDrop 0.85s var(--ease-out) both;
+      }
+
+      @keyframes navDrop {
+        from {
+          opacity: 0;
+          transform: translateY(-18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .navbar.scrolled {
+        background: rgba(13, 13, 13, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 8px 60px;
+        box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--white);
+        text-decoration: none;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: var(--transition);
+      }
+
+      .navbar .logo {
+        width: 132px;
+        height: 80px;
+        flex: 0 0 auto;
+        overflow: hidden;
+      }
+
+      .navbar .logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: left center;
+        transition: var(--transition);
+      }
+
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        border: 1.5px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        color: var(--gold);
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        transition: var(--transition);
+      }
+
+      .logo:hover {
+        color: var(--gold-light);
+      }
+
+      /* .logo:hover .logo-icon {
+        transform: rotate(6deg) scale(1.06);
+        background: rgba(198, 161, 91, 0.08);
+      }
+
+      .navbar .logo:hover img {
+        transform: scale(1.04);
+      } */
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--warm-grey);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 400;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        position: relative;
+        padding-bottom: 4px;
+        transition: var(--transition);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--white);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* ===== MEGA MENU NAVIGATION ===== */
+      .nav-links {
+        gap: 4px;
+        align-items: center;
+      }
+
+      .nav-item {
+        position: static;
+      }
+
+      .nav-top-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 10px 14px;
+        border-radius: 3px;
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+
+      .nav-top-link .caret {
+        width: 6px;
+        height: 6px;
+        border-right: 1px solid currentColor;
+        border-bottom: 1px solid currentColor;
+        transform: rotate(45deg) translateY(-2px);
+        transition: transform 0.3s var(--ease-out);
+        opacity: 0.65;
+      }
+
+      .nav-item.mega-open .nav-top-link .caret {
+        transform: rotate(-135deg) translateY(1px);
+        opacity: 1;
+      }
+
+      .nav-item.mega-open .nav-top-link,
+      .nav-top-link:hover {
+        color: var(--gold);
+        background: rgba(198, 161, 91, 0.08);
+      }
+
+      .nav-links a.nav-top-link::after {
+        display: none;
+      }
+
+      /* Dimming overlay behind an open mega-menu / mobile drawer */
+      .nav-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+        z-index: 900;
+      }
+
+      .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mega-menu {
+        position: fixed;
+        top: 96px;
+        left: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(15, 15, 15, 0.99) 0%, rgba(10, 10, 10, 0.99) 100%);
+        backdrop-filter: blur(28px);
+        border-bottom: 1px solid rgba(198, 161, 91, 0.16);
+        box-shadow: 0 40px 70px rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px) scaleY(0.98);
+        transform-origin: top;
+        transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.3s;
+        z-index: 999;
+      }
+
+      .mega-menu::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+        opacity: 0.6;
+      }
+
+      .nav-item.mega-open .mega-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scaleY(1);
+        max-height: 78vh;
+        overflow-y: auto;
+      }
+
+      .mega-menu-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 38px 60px 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 30px 40px;
+      }
+
+      /* Divisions with long lists get more room, and their list splits into two text columns */
+      .mega-col:has(ul li:nth-child(11)) {
+        grid-column: span 2;
+      }
+
+      .mega-col:has(ul li:nth-child(11)) ul {
+        column-count: 2;
+        column-gap: 28px;
+      }
+
+      .mega-col:has(ul li:nth-child(11)) li {
+        break-inside: avoid;
+      }
+
+      .mega-col-title {
+        position: relative;
+        font-family: "Playfair Display", serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--gold);
+        letter-spacing: 0.4px;
+        margin-bottom: 16px;
+        padding-bottom: 11px;
+        padding-left: 12px;
+        border-bottom: 1px solid rgba(198, 161, 91, 0.2);
+      }
+
+      .mega-col-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        bottom: 13px;
+        width: 2px;
+        background: var(--gold);
+      }
+
+      .mega-col ul {
+        list-style: none;
+      }
+
+      .mega-col li {
+        margin-bottom: 2px;
+      }
+
+      .mega-col a {
+        display: block;
+        color: var(--warm-grey);
+        text-decoration: none;
+        font-size: 0.81rem;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+        text-transform: none;
+        padding: 6px 10px 6px 0;
+        border-radius: 3px;
+        transition: color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+      }
+
+      .mega-col a:hover {
+        color: var(--gold-light);
+        background: rgba(198, 161, 91, 0.07);
+        padding-left: 10px;
+      }
+
+      .mega-menu-footer {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 16px 60px 26px;
+        display: flex;
+        gap: 36px;
+        border-top: 1px solid rgba(198, 161, 91, 0.12);
+      }
+
+      .mega-menu-footer a {
+        color: var(--gold);
+        text-decoration: none;
+        font-size: 0.74rem;
+        font-weight: 500;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        transition: var(--transition);
+      }
+
+      .mega-menu-footer a:hover {
+        color: var(--gold-light);
+        letter-spacing: 1.8px;
+      }
+
+      .btn-utility {
+        padding: 9px 20px;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 1.3px;
+        text-transform: uppercase;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: var(--transition);
+      }
+
+      .btn-sell {
+        color: var(--deep-black);
+        background: var(--gold);
+      }
+
+      .btn-sell:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(198, 161, 91, 0.3);
+      }
+
+      .btn-login {
+        color: var(--white);
+        background: transparent;
+        border: 1px solid rgba(198, 161, 91, 0.5);
+      }
+
+      .btn-login:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-2px);
+      }
+
+      .nav-links a.btn-utility::after {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(198, 161, 91, 0.45);
+        background: rgba(13, 13, 13, 0.72);
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        transition: var(--transition);
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 1px;
+        background: var(--gold);
+        transition: var(--transition);
+      }
+
+      .navbar.menu-open .menu-toggle span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      .navbar.menu-open .menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .navbar.menu-open .menu-toggle span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      /* ===== HERO SECTION - Full width banner ===== */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(13, 13, 13, 0.85) 0%,
+            rgba(13, 13, 13, 0.7) 50%,
+            rgba(13, 13, 13, 0.85) 100%
+          ),
+          url("/wmremove-transformed.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        isolation: isolate;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(
+            ellipse at 30% 50%,
+            rgba(198, 161, 91, 0.08) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 70% 30%,
+            rgba(198, 161, 91, 0.05) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+        animation: ambientGlow 9s ease-in-out infinite alternate;
+      }
+
+      @keyframes ambientGlow {
+        from {
+          opacity: 0.58;
+          transform: scale(1);
+        }
+        to {
+          opacity: 0.95;
+          transform: scale(1.05);
+        }
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 900px;
+        padding: 0 40px;
+        position: relative;
+        z-index: 2;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInSoft {
+        from {
+          opacity: 0;
+          transform: translateY(26px);
+          filter: blur(8px);
+          
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+
+      .hero-tag {
+        font-size: 0.7rem;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 24px;
+        font-weight: 500;
+        opacity: 0.9;
+        animation: fadeInSoft 0.9s 0.15s var(--ease-out) both;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+        font-weight: 500;
+        line-height: 1.1;
+        margin-bottom: 24px;
+        color: var(--white);
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        animation: fadeInSoft 1s 0.28s var(--ease-out) both;
+      }
+
+      .hero h1 .gold-text {
+        color: var(--gold);
+        font-style: italic;
+        background: linear-gradient(100deg, var(--gold), #f1d991, var(--gold));
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: goldSweep 4.8s ease-in-out infinite;
+      }
+
+      @keyframes goldSweep {
+        0%,
+        100% {
+          background-position: 0% center;
+        }
+        50% {
+          background-position: 100% center;
+        }
+      }
+
+      .hero h1 .newline {
+        display: block;
+      }
+
+      .hero-desc {
+        font-size: 1.05rem;
+        color: var(--warm-grey);
+        max-width: 650px;
+        margin: 0 auto 40px;
+        font-weight: 300;
+        line-height: 1.7;
+        text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+        animation: fadeInSoft 1s 0.42s var(--ease-out) both;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeInSoft 1s 0.56s var(--ease-out) both;
+      }
+
+      .btn {
+        padding: 14px 36px;
+        font-size: 0.8rem;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        cursor: pointer;
+        border: none;
+        font-family: "Inter", sans-serif;
+        position: relative;
+        overflow: hidden;
+        transform: translateY(0);
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -85%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.32),
+          transparent
+        );
+        transform: skewX(-18deg);
+        transition: left 0.65s var(--ease-out);
+      }
+
+      .btn:hover::before {
+        left: 120%;
+      }
+
+      .btn-primary {
+        background: var(--gold);
+        color: var(--deep-black);
+      }
+
+      .btn-primary:hover {
+        background: var(--gold-light);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(198, 161, 91, 0.3);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--white);
+        border: 1px solid rgba(198, 161, 91, 0.5);
+      }
+
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        transform: translateY(-3px);
+        background: rgba(198, 161, 91, 0.05);
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        opacity: 0.4;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(10px);
+        }
+      }
+
+      .scroll-indicator span {
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--warm-grey);
+      }
+
+      .scroll-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--gold), transparent);
+      }
+
+      /* ===== WHITE SECTIONS ===== */
+      .white-section {
+        background: var(--white);
+        color: var(--deep-black);
+        padding: 100px 60px;
+        position: relative;
+      }
+
+      .white-section .section-tag {
+        color: var(--gold);
+      }
+
+      .white-section h2 {
+        color: var(--deep-black);
+      }
+
+      .white-section p {
+        color: var(--graphite);
+      }
+
+      /* ===== DARK SECTIONS ===== */
+      .dark-section {
+        background: var(--deep-black);
+        color: var(--white);
+        padding: 100px 60px;
+        position: relative;
+      }
+
+      .dark-section .section-tag {
+        color: var(--gold);
+      }
+
+      .dark-section h2 {
+        color: var(--white);
+      }
+
+      .dark-section p {
+        color: var(--warm-grey);
+      }
+
+      /* ===== TWO COLUMN LAYOUT ===== */
+      .two-col-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .two-col-grid.reverse {
+        direction: rtl;
+      }
+
+      .two-col-grid.reverse > * {
+        direction: ltr;
+      }
+
+      .col-text h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.6rem;
+        font-weight: 500;
+        margin-bottom: 24px;
+        line-height: 1.2;
+      }
+
+      .col-text p {
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 32px;
+        font-weight: 300;
+      }
+
+      .col-link {
+        color: var(--gold);
+        text-decoration: none;
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: var(--transition);
+        border-bottom: 1px solid transparent;
+        padding-bottom: 2px;
+      }
+
+      .col-link::after {
+        content: "";
+        width: 18px;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s var(--ease-out);
+      }
+
+      .col-link:hover {
+        gap: 12px;
+        border-bottom-color: var(--gold);
+      }
+
+      .col-link:hover::after {
+        transform: scaleX(1);
+      }
+
+      .col-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        height: 350px;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.16);
+        transform: translateZ(0);
+      }
+
+      .col-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(10%) contrast(1.05);
+        transition:
+          transform 0.9s var(--ease-out),
+          filter 0.6s ease,
+          opacity 0.6s ease;
+      }
+
+      .col-image::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(198, 161, 91, 0.06) 0%,
+          transparent 100%
+        );
+        pointer-events: none;
+        opacity: 0.8;
+        transition: opacity 0.5s ease;
+      }
+
+      .col-image::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: linear-gradient(
+          100deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.2) 45%,
+          transparent 62%
+        );
+        transform: translateX(-120%);
+        transition: transform 0.85s var(--ease-out);
+        pointer-events: none;
+      }
+
+      .col-image:hover img {
+        filter: grayscale(0%) contrast(1);
+        transform: scale(1.055);
+      }
+
+      .col-image:hover::before {
+        transform: translateX(120%);
+      }
+
+      .col-image:hover::after {
+        opacity: 0.35;
+      }
+
+      .section-tag {
+        font-size: 0.7rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+
+      /* ===== SERVICES SECTION ===== */
+      .services-section {
+        background: var(--deep-black);
+        padding: 100px 60px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+        font-weight: 500;
+        color: var(--white);
+        line-height: 1.2;
+      }
+
+      .gold-divider {
+        width: 60px;
+        height: 1px;
+        background: var(--gold);
+        margin: 24px auto;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        max-width: 1200px;
+        margin: 0 auto 50px;
+      }
+
+      .service-card {
+        background: rgba(44, 44, 44, 0.4);
+        border: 1px solid rgba(198, 161, 91, 0.2);
+        padding: 44px 28px;
+        text-align: center;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        transform: translateY(0);
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: var(--transition);
+      }
+
+      .service-card:hover {
+        border-color: rgba(198, 161, 91, 0.5);
+        transform: translateY(-9px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        background: rgba(44, 44, 44, 0.6);
+      }
+
+      .service-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .service-icon {
+        width: 44px;
+        height: 44px;
+        margin: 0 auto 20px;
+        border: 1px solid rgba(198, 161, 91, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        font-size: 1.1rem;
+        transition: var(--transition);
+      }
+
+      .service-card:hover .service-icon {
+        background: rgba(198, 161, 91, 0.1);
+        border-color: var(--gold);
+        transform: translateY(-4px) rotate(-2deg);
+      }
+
+      .service-card h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 12px;
+        color: var(--white);
+      }
+
+      .service-card p {
+        font-size: 0.82rem;
+        color: var(--warm-grey);
+        line-height: 1.6;
+        font-weight: 300;
+      }
+
+      .services-cta {
+        text-align: center;
+      }
+
+      .btn-dark {
+        background: var(--deep-black);
+        color: var(--white);
+        border: 1px solid var(--deep-black);
+      }
+
+      .btn-dark:hover {
+        background: transparent;
+        color: var(--deep-black);
+      }
+
+      /* ===== CTA BANNER ===== */
+      .cta-banner {
+        background: linear-gradient(135deg, #080808 0%, var(--deep-black) 100%);
+        padding: 100px 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-top: 1px solid rgba(198, 161, 91, 0.1);
+        border-bottom: 1px solid rgba(198, 161, 91, 0.1);
+      }
+
+      .cta-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(198, 161, 91, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .cta-banner h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        font-weight: 500;
+        color: var(--gold);
+        margin-bottom: 32px;
+        position: relative;
+        z-index: 2;
+        line-height: 1.3;
+      }
+
+      .cta-banner .btn-primary {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* ===== FOOTER ===== */
+      .footer {
+        background:
+          linear-gradient(180deg, rgba(198, 161, 91, 0.08), transparent 34%),
+          linear-gradient(135deg, #080808 0%, #111 52%, #070707 100%);
+        padding: 86px 60px 34px;
+        border-top: 1px solid rgba(198, 161, 91, 0.18);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: min(1180px, calc(100% - 44px));
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(198, 161, 91, 0.75),
+          transparent
+        );
+        transform: translateX(-50%);
+      }
+
+      .footer::after {
+        content: "";
+        position: absolute;
+        right: -18%;
+        bottom: -42%;
+        width: 520px;
+        height: 520px;
+        background: radial-gradient(
+          circle,
+          rgba(198, 161, 91, 0.12) 0%,
+          transparent 64%
+        );
+        pointer-events: none;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: minmax(280px, 1.45fr) repeat(3, minmax(140px, 1fr));
+        gap: 44px;
+        max-width: 1200px;
+        margin: 0 auto 52px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-logo {
+        width: 85px;
+        height: 85px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        text-decoration: none;
+      }
+
+      .footer-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .footer-brand p {
+        color: var(--warm-grey);
+        font-size: 0.92rem;
+        line-height: 1.8;
+        font-weight: 300;
+        max-width: 300px;
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 26px;
+      }
+
+      .footer-contact a {
+        color: var(--white);
+        text-decoration: none;
+        font-size: 0.72rem;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(198, 161, 91, 0.28);
+        background: rgba(255, 255, 255, 0.035);
+        padding: 10px 13px;
+        transition: var(--transition);
+      }
+
+      .footer-contact a:hover {
+        color: var(--gold);
+        border-color: rgba(198, 161, 91, 0.72);
+        background: rgba(198, 161, 91, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .footer-col h4 {
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 12px;
+        font-weight: 500;
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col li {
+        margin-bottom: 5px;
+      }
+
+      .footer-col a {
+        color: var(--warm-grey);
+        text-decoration: none;
+        font-size: 0.88rem;
+        transition: var(--transition);
+        font-weight: 300;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .footer-col a::before {
+        content: "";
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        transition: width 0.32s var(--ease-out);
+      }
+
+      .footer-col a:hover {
+        color: var(--white);
+        transform: translateX(4px);
+      }
+
+      .footer-col a:hover::before {
+        width: 16px;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(198, 161, 91, 0.14);
+        padding-top: 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-bottom p {
+        color: var(--warm-grey);
+        font-size: 0.72rem;
+        font-weight: 300;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .social-links a {
+        color: var(--warm-grey);
+        text-decoration: none;
+        font-size: 0.74rem;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 9px 12px;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        color: var(--gold);
+        transform: translateY(-2px);
+        border-color: rgba(198, 161, 91, 0.5);
+        background: rgba(198, 161, 91, 0.06);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 1080px) {
+        body.nav-locked {
+          overflow: hidden;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          flex-shrink: 0;
+          position: relative;
+          z-index: 1002;
+        }
+
+        /* Full-height slide-in drawer from the right */
+        .nav-links {
+          position: fixed;
+          top: 0;
+          right: 0;
+          height: 100dvh;
+          width: min(84vw, 360px);
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          padding: 90px 0 0;
+          margin: 0;
+          background: rgba(11, 11, 11, 0.98);
+          backdrop-filter: blur(22px);
+          border-left: 1px solid rgba(198, 161, 91, 0.2);
+          box-shadow: -24px 0 60px rgba(0, 0, 0, 0.5);
+          transform: translateX(100%);
+          transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+          z-index: 1001;
+          overflow-y: auto;
+        }
+
+        .navbar.menu-open .nav-links {
+          transform: translateX(0);
+        }
+
+        .nav-links::-webkit-scrollbar {
+          width: 4px;
+        }
+
+        .nav-links::-webkit-scrollbar-thumb {
+          background: rgba(198, 161, 91, 0.35);
+        }
+
+        .nav-item {
+          width: 100%;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 17px 26px;
+          font-size: 0.74rem;
+          letter-spacing: 1.6px;
+        }
+
+        .nav-top-link {
+          justify-content: space-between;
+          width: 100%;
+          padding: 17px 26px;
+          border-radius: 0;
+        }
+
+        .nav-item.mega-open .nav-top-link,
+        .nav-top-link:hover {
+          background: rgba(198, 161, 91, 0.06);
+        }
+
+        .nav-top-link .caret {
+          width: 8px;
+          height: 8px;
+        }
+
+        .mega-menu {
+          position: static;
+          width: 100%;
+          max-height: 0;
+          opacity: 1;
+          visibility: visible;
+          transform: none;
+          background: rgba(0, 0, 0, 0.25);
+          border: none;
+          box-shadow: none;
+          backdrop-filter: none;
+          transition: max-height 0.4s var(--ease-smooth);
+        }
+
+        .mega-menu::before {
+          display: none;
+        }
+
+        .nav-item.mega-open .mega-menu {
+          max-height: 3000px;
+        }
+
+        .mega-menu-inner {
+          padding: 6px 26px 10px 34px;
+          grid-template-columns: 1fr;
+          gap: 22px;
+        }
+
+        .mega-col:has(ul li:nth-child(11)) {
+          grid-column: span 1;
+        }
+
+        .mega-col:has(ul li:nth-child(11)) ul {
+          column-count: 1;
+        }
+
+        .mega-col-title {
+          font-size: 0.78rem;
+          margin-bottom: 10px;
+        }
+
+        .mega-col a {
+          font-size: 0.77rem;
+          padding: 8px 10px 8px 0;
+        }
+
+        .mega-menu-footer {
+          padding: 4px 26px 20px 34px;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .utility-item {
+          border-bottom: none;
+          padding: 18px 26px 26px;
+          margin-top: auto;
+        }
+
+        .utility-item + .utility-item {
+          padding-top: 0;
+        }
+
+        .btn-utility {
+          display: block;
+          text-align: center;
+          margin-bottom: 10px;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .navbar,
+        .navbar.scrolled {
+          padding-left: 36px;
+          padding-right: 36px;
+        }
+
+        .hero {
+          background-attachment: scroll;
+        }
+
+        .hero-content {
+          max-width: 780px;
+        }
+
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .two-col-grid {
+          gap: 50px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .footer-brand {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        html {
+          scroll-padding-top: 78px;
+        }
+
+        .navbar {
+          padding: 8px 22px;
+          background: rgba(13, 13, 13, 0.9);
+          backdrop-filter: blur(18px);
+        }
+
+        .navbar.scrolled {
+          padding: 8px 22px;
+        }
+
+        .logo {
+          font-size: 1.08rem;
+          letter-spacing: 0.7px;
+        }
+
+        .navbar .logo {
+          width: 104px;
+          height: 63px;
+        }
+
+        .logo-icon {
+          width: 30px;
+          height: 30px;
+          font-size: 0.92rem;
+        }
+
+        .nav-links {
+          width: min(88vw, 340px);
+        }
+
+        .hero {
+          min-height: 100svh;
+          align-items: flex-end;
+          padding: 100px 0 30px;
+          background-position: center top;
+        }
+
+        .hero::before {
+          background:
+            linear-gradient(
+              180deg,
+              rgba(13, 13, 13, 0.2) 0%,
+              rgba(13, 13, 13, 0.74) 46%,
+              rgba(13, 13, 13, 0.96) 100%
+            ),
+            radial-gradient(
+              ellipse at 50% 72%,
+              rgba(198, 161, 91, 0.12) 0%,
+              transparent 62%
+            );
+        }
+
+        .hero-content {
+          width: 100%;
+          padding: 0 22px;
+          text-align: left;
+        }
+
+        .hero-tag {
+          font-size: 0.64rem;
+          letter-spacing: 3.2px;
+          margin-bottom: 18px;
+        }
+
+        .hero h1 {
+          font-size: clamp(2.35rem, 13vw, 3.65rem);
+          line-height: 1.02;
+          margin-bottom: 18px;
+          max-width: 10ch;
+        }
+
+        .hero-desc {
+          font-size: 0.96rem;
+          line-height: 1.65;
+          margin: 0 0 30px;
+          max-width: 34rem;
+        }
+
+        .hero-buttons {
+          justify-content: flex-start;
+          gap: 12px;
+        }
+
+        .btn {
+          min-height: 48px;
+          padding: 14px 20px;
+          font-size: 0.72rem;
+          letter-spacing: 1.7px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .scroll-indicator {
+          left: auto;
+          right: 22px;
+          bottom: 15px;
+          transform: none;
+        }
+
+        @keyframes bounce {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(8px);
+          }
+        }
+
+        .white-section,
+        .dark-section,
+        .services-section,
+        .cta-banner {
+          padding: 72px 22px;
+        }
+
+        .two-col-grid {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+
+        .two-col-grid.reverse {
+          direction: ltr;
+        }
+
+        .fade-in,
+        .reveal-left,
+        .reveal-right {
+          transform: translateY(28px);
+        }
+
+        .fade-in.visible.reveal-left,
+        .fade-in.visible.reveal-right {
+          transform: translateY(0);
+        }
+
+        .col-text h2,
+        .section-title,
+        .cta-banner h2 {
+          font-size: clamp(2rem, 9vw, 2.65rem);
+          line-height: 1.08;
+        }
+
+        .col-text p {
+          font-size: 0.95rem;
+          line-height: 1.75;
+          margin-bottom: 26px;
+        }
+
+        .section-tag {
+          font-size: 0.64rem;
+          letter-spacing: 3px;
+          margin-bottom: 12px;
+        }
+
+        .col-image {
+          height: auto;
+          aspect-ratio: 4 / 3;
+          border-radius: 8px;
+          box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
+        }
+
+        .two-col-grid.reverse .col-image {
+          order: -1;
+        }
+
+        .section-header {
+          margin-bottom: 42px;
+          text-align: left;
+        }
+
+        .section-header p {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+
+        .gold-divider {
+          margin-left: 0;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+          margin-bottom: 36px;
+        }
+
+        .service-card {
+          padding: 30px 22px;
+          text-align: left;
+        }
+
+        .service-icon {
+          margin-left: 0;
+          margin-right: 0;
+        }
+
+        .service-card h3 {
+          font-size: 1.18rem;
+        }
+
+        .service-card p {
+          font-size: 0.86rem;
+        }
+
+        .services-cta {
+          text-align: left;
+        }
+
+        .cta-banner {
+          text-align: left;
+        }
+
+        .cta-banner p {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+
+        .footer-brand {
+          grid-column: auto;
+        }
+
+        .footer {
+          padding: 58px 22px 30px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 18px;
+          align-items: flex-start;
+          text-align: left;
+        }
+
+        .social-links {
+          flex-wrap: wrap;
+          gap: 7px 9px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          padding-bottom: 82px;
+        }
+
+        .hero-buttons,
+        .cta-banner .hero-buttons {
+          width: 100%;
+        }
+
+        .hero-buttons .btn,
+        .cta-banner .btn {
+          width: 100%;
+        }
+
+        .col-link {
+          font-size: 0.75rem;
+          letter-spacing: 1.2px;
+        }
+
+        .two-col-grid + .two-col-grid {
+          margin-top: 48px !important;
+        }
+
+        .footer-logo {
+          width: 65px;
+          height: 65px;
+          margin-bottom: 20px;
+        }
+
+        .footer-contact {
+          width: 100%;
+        }
+
+        .footer-contact a {
+          width: 100%;
+          text-align: center;
+          justify-content: center;
+        }
+      }
+
+      /* ===== ANIMATION ON SCROLL ===== */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(34px);
+        filter: blur(8px);
+        transition:
+          opacity 0.9s var(--ease-out),
+          transform 0.9s var(--ease-out),
+          filter 0.9s var(--ease-out);
+        transition-delay: var(--reveal-delay, 0ms);
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+
+      .reveal-left {
+        transform: translateX(-38px);
+      }
+
+      .reveal-right {
+        transform: translateX(38px);
+      }
+
+      .reveal-scale {
+        transform: translateY(24px) scale(0.96);
+      }
+
+      .fade-in.visible.reveal-left,
+      .fade-in.visible.reveal-right,
+      .fade-in.visible.reveal-scale {
+        transform: translate(0, 0) scale(1);
+      }
+
+      .stagger-parent > * {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.75s var(--ease-out),
+          transform 0.75s var(--ease-out);
+        transition-delay: calc(var(--item-index, 0) * 90ms);
+      }
+
+      .stagger-parent.visible > * {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .fade-in,
+        .stagger-parent > * {
+          opacity: 1;
+          filter: none;
+          transform: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .fade-in,
+        .reveal-left,
+        .reveal-right {
+          transform: translateY(28px);
+        }
+
+        .fade-in.visible.reveal-left,
+        .fade-in.visible.reveal-right {
+          transform: translateY(0);
+        }
+      }
+    </style>
+    <base target="_blank" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+      <a href="#" class="logo">
+        <!-- <div class="logo-icon">P</div>
+        PRO CAPITAL -->
+        <img src="Pro-Capital-full-logo-blk.png" alt="PRO CAPITAL logo">
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Oilfield<span class="caret"></span></a>
+          <div class="mega-menu" id="mega-oilfield">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Drilling Equipment</h4>
+                <ul>
+                  <li><a href="#">Blowout Preventers</a></li>
+                  <li><a href="#">Block &amp; Hook Combos</a></li>
+                  <li><a href="#">Downhole / Fishing Tools</a></li>
+                  <li><a href="#">Drawworks</a></li>
+                  <li><a href="oilfield-category.html">Drill Bits</a></li>
+                  <li><a href="#">Drilling Rigs</a></li>
+                  <li><a href="#">Land Rigs</a></li>
+                  <li><a href="#">Mud Pumps</a></li>
+                  <li><a href="#">Pipe Handling Equipment</a></li>
+                  <li><a href="#">Power Swivels</a></li>
+                  <li><a href="#">Pumps</a></li>
+                  <li><a href="#">Rotary Tables</a></li>
+                  <li><a href="#">Shale Shakers</a></li>
+                  <li><a href="#">Solids Control</a></li>
+                  <li><a href="#">Tongs – Power</a></li>
+                  <li><a href="#">Traveling Equipment</a></li>
+                  <li><a href="#">Well Control Equipment</a></li>
+                  <li><a href="#">Well Service / Workover Rigs</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Production Equipment</h4>
+                <ul>
+                  <li><a href="#">Artificial Lift</a></li>
+                  <li><a href="#">Coil Tubing Units</a></li>
+                  <li><a href="#">Compression Equipment</a></li>
+                  <li><a href="#">Frac Tanks</a></li>
+                  <li><a href="#">Gas Compressors</a></li>
+                  <li><a href="#">Pump Jacks / Pumping Units</a></li>
+                  <li><a href="#">Separators / Filters</a></li>
+                  <li><a href="#">Stimulation Equipment</a></li>
+                  <li><a href="#">Tanks &amp; Vessels</a></li>
+                  <li><a href="#">Well Service Equipment</a></li>
+                  <li><a href="#">Wireline Equipment</a></li>
+                  <li><a href="#">Frac Pumps / High Horsepower Pumps</a></li>
+                  <li><a href="#">Workover Rigs</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Support Equipment</h4>
+                <ul>
+                  <li><a href="#">Buildings</a></li>
+                  <li><a href="#">Containment Systems</a></li>
+                  <li><a href="#">Engines – Diesel</a></li>
+                  <li><a href="#">Gear Boxes / Drives</a></li>
+                  <li><a href="#">Generators / Electric Power</a></li>
+                  <li><a href="#">Hydraulic Power Units</a></li>
+                  <li><a href="#">Land Cranes</a></li>
+                  <li><a href="#">Power Equipment</a></li>
+                  <li><a href="#">Subsea / Maritime Equipment</a></li>
+                  <li><a href="#">Safety &amp; Lighting Equipment</a></li>
+                  <li><a href="#">Transmissions / Torque Converters</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Tubular Goods / Drill String</h4>
+                <ul>
+                  <li><a href="#">Casing &amp; Tubing</a></li>
+                  <li><a href="#">Coiled Tubing</a></li>
+                  <li><a href="#">Drill Collars</a></li>
+                  <li><a href="#">Drill Pipe</a></li>
+                  <li><a href="#">Heavy Weight</a></li>
+                  <li><a href="#">Line Pipe</a></li>
+                  <li><a href="#">Pipe</a></li>
+                  <li><a href="#">Pipe Racks</a></li>
+                  <li><a href="#">Pup Joints</a></li>
+                  <li><a href="#">Subs / Crossovers</a></li>
+                  <li><a href="#">Miscellaneous Tubulars</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Parts, Supplies &amp; Tools</h4>
+                <ul>
+                  <li><a href="#">Actuators</a></li>
+                  <li><a href="#">Brakes / Clutches</a></li>
+                  <li><a href="#">Electrical Equipment</a></li>
+                  <li><a href="#">Filters / Fluids</a></li>
+                  <li><a href="#">Fittings / Flanges</a></li>
+                  <li><a href="#">Gate Valves</a></li>
+                  <li><a href="#">Hardware / Fasteners</a></li>
+                  <li><a href="#">Hoses / Belts</a></li>
+                  <li><a href="#">Hydraulic Equipment</a></li>
+                  <li><a href="#">Instrumentation &amp; Controls</a></li>
+                  <li><a href="#">Rubber / Sealing Products</a></li>
+                  <li><a href="#">Thread Compounds</a></li>
+                  <li><a href="#">Tools</a></li>
+                  <li><a href="#">Valves</a></li>
+                  <li><a href="#">Wear Parts</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="oilfield-category.html" class="mega-view-all">View All Oilfield ▶</a>
+              <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Transportation<span class="caret"></span></a>
+          <div class="mega-menu" id="mega-transportation">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Oilfield &amp; Heavy Trucks</h4>
+                <ul>
+                  <li><a href="#">Boom / Bucket / Crane Trucks</a></li>
+                  <li><a href="#">Coiled Tubing Trucks</a></li>
+                  <li><a href="#">Day Cab Trucks</a></li>
+                  <li><a href="#">Flatbed Trucks</a></li>
+                  <li><a href="#">Gin Pole Trucks</a></li>
+                  <li><a href="#">Hot Oil / Heating Trucks</a></li>
+                  <li><a href="#">Military Trucks</a></li>
+                  <li><a href="#">Pressure / Pump Kill Trucks</a></li>
+                  <li><a href="#">Sleeper Trucks</a></li>
+                  <li><a href="#">Specialty Trucks</a></li>
+                  <li><a href="#">Specialty Truck Bodies</a></li>
+                  <li><a href="#">Vacuum Trucks</a></li>
+                  <li><a href="#">Water Trucks</a></li>
+                  <li><a href="#">Winch Trucks</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Trailers</h4>
+                <ul>
+                  <li><a href="#">Coiled Tubing Trailers</a></li>
+                  <li><a href="#">Drop / Step Deck Trailers</a></li>
+                  <li><a href="#">Dry Van Trailers</a></li>
+                  <li><a href="#">Equipment Trailers</a></li>
+                  <li><a href="#">Flatbed Trailers</a></li>
+                  <li><a href="#">Frac Tank Trailers</a></li>
+                  <li><a href="#">Lowboy Trailers</a></li>
+                  <li><a href="#">Oil Field Trailers</a></li>
+                  <li><a href="#">Pressure / Pump Kill Trailers</a></li>
+                  <li><a href="#">Specialty Tank Trailers</a></li>
+                  <li><a href="#">Specialty Trailers</a></li>
+                  <li><a href="#">Tank Trailer – Hydration Units</a></li>
+                  <li><a href="#">Vacuum Trailers</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Fleet, Rail &amp; Logistics</h4>
+                <ul>
+                  <li><a href="#">Freight / Shipping / Storage</a></li>
+                  <li><a href="#">Rail Cars &amp; Rail Equipment</a></li>
+                  <li><a href="#">Marine / Barge Equipment</a></li>
+                  <li><a href="#">Fleet Maintenance Equipment</a></li>
+                  <li><a href="#">Dispatch &amp; Logistics Services</a></li>
+                  <li><a href="#">Bulk Haul Equipment</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="#" class="mega-view-all">View All Transportation ▶</a>
+              <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Construction<span class="caret"></span></a>
+          <div class="mega-menu" id="mega-construction">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Earthmoving Equipment</h4>
+                <ul>
+                  <li><a href="#">Excavators</a></li>
+                  <li><a href="#">Bulldozers</a></li>
+                  <li><a href="#">Wheel Loaders</a></li>
+                  <li><a href="#">Motor Graders</a></li>
+                  <li><a href="#">Backhoe Loaders</a></li>
+                  <li><a href="#">Skid Steers / Track Loaders</a></li>
+                  <li><a href="#">Scrapers</a></li>
+                  <li><a href="#">Trenchers</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Cranes &amp; Material Handling</h4>
+                <ul>
+                  <li><a href="#">Crawler Cranes</a></li>
+                  <li><a href="#">Rough Terrain Cranes</a></li>
+                  <li><a href="#">Tower Cranes</a></li>
+                  <li><a href="#">Forklifts</a></li>
+                  <li><a href="#">Aerial / Boom Lifts</a></li>
+                  <li><a href="#">Telehandlers</a></li>
+                  <li><a href="#">Conveyors &amp; Material Handling Systems</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Building &amp; Site Equipment</h4>
+                <ul>
+                  <li><a href="#">Compactors &amp; Rollers</a></li>
+                  <li><a href="#">Pavers &amp; Asphalt Equipment</a></li>
+                  <li><a href="#">Concrete &amp; Mixing Equipment</a></li>
+                  <li><a href="#">Site Buildings &amp; Modular Structures</a></li>
+                  <li><a href="#">Generators &amp; Power Equipment</a></li>
+                  <li><a href="#">Safety &amp; Lighting Equipment</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Construction Support &amp; Parts</h4>
+                <ul>
+                  <li><a href="#">Attachments</a></li>
+                  <li><a href="#">Wear Parts &amp; Undercarriage</a></li>
+                  <li><a href="#">Hydraulic Components</a></li>
+                  <li><a href="#">Fuel &amp; Fluid Systems</a></li>
+                  <li><a href="#">Tools &amp; Supplies</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="#" class="mega-view-all">View All Construction ▶</a>
+              <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Real Estate<span class="caret"></span></a>
+          <div class="mega-menu" id="mega-real-estate">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Commercial &amp; Industrial Property</h4>
+                <ul>
+                  <li><a href="#">Office</a></li>
+                  <li><a href="#">Retail</a></li>
+                  <li><a href="#">Industrial / Warehouse</a></li>
+                  <li><a href="#">Yards &amp; Lay-Down Space</a></li>
+                  <li><a href="#">Fabrication &amp; Shop Facilities</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Land</h4>
+                <ul>
+                  <li><a href="#">Raw / Undeveloped Land</a></li>
+                  <li><a href="#">Ranch &amp; Farm Land</a></li>
+                  <li><a href="#">Development Sites</a></li>
+                  <li><a href="#">Mineral Rights &amp; Royalties</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Energy &amp; Oilfield Real Estate</h4>
+                <ul>
+                  <li><a href="#">Well Site Locations</a></li>
+                  <li><a href="#">Pipeline &amp; Right-of-Way</a></li>
+                  <li><a href="#">Compressor Station Sites</a></li>
+                  <li><a href="#">Field Camps &amp; Housing</a></li>
+                  <li><a href="#">Storage &amp; Tank Farm Sites</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Residential</h4>
+                <ul>
+                  <li><a href="#">Single-Family Homes</a></li>
+                  <li><a href="#">Multi-Family / Investment Properties</a></li>
+                  <li><a href="#">Land with Residence</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="#" class="mega-view-all">View All Real Estate ▶</a>
+              <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item has-mega">
+          <a href="#" class="nav-top-link" aria-haspopup="true" aria-expanded="false">Info &amp; Services<span class="caret"></span></a>
+          <div class="mega-menu" id="mega-info-services">
+            <div class="mega-menu-inner">
+              <div class="mega-col">
+                <h4 class="mega-col-title">Industry Resources</h4>
+                <ul>
+                  <li><a href="#">24-Hour Services</a></li>
+                  <li><a href="#">Appraisals</a></li>
+                  <li><a href="#">Custom Fabrication</a></li>
+                  <li><a href="#">Design / Engineering</a></li>
+                  <li><a href="#">Equipment Testing</a></li>
+                  <li><a href="#">Field Services</a></li>
+                  <li><a href="#">Fire &amp; Safety</a></li>
+                  <li><a href="#">Freight / Shipping / Storage</a></li>
+                  <li><a href="#">Rentals / Leasing</a></li>
+                  <li><a href="#">Repair Services</a></li>
+                  <li><a href="#">Welding Services</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Directories &amp; Marketplace Tools</h4>
+                <ul>
+                  <li><a href="#">Find Companies</a></li>
+                  <li><a href="#">Auctions &amp; Events</a></li>
+                  <li><a href="#">Want-to-Buy Requests</a></li>
+                  <li><a href="#">Featured Listings</a></li>
+                </ul>
+              </div>
+              <div class="mega-col">
+                <h4 class="mega-col-title">Company &amp; Account</h4>
+                <ul>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Advertise With Us</a></li>
+                  <li><a href="#">Sell Now / List an Asset</a></li>
+                  <li><a href="#">Sign Up</a></li>
+                  <li><a href="#">Login / My Account</a></li>
+                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="#">Help / Support</a></li>
+                  <li><a href="#">Site Map</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mega-menu-footer">
+              <a href="#" class="mega-view-all">View All Info &amp; Services ▶</a>
+              <a href="#" class="mega-wtb">Want-to-Buy ▶</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item utility-item">
+          <a href="#" class="btn-utility btn-sell">Sell/List an Asset</a>
+        </li>
+        <li class="nav-item utility-item">
+          <a href="#" class="btn-utility btn-login">Sign Up/Login</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Hero Section - Dark Banner -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-tag">Global Industrial Asset Marketplace</div>
+        <h1>
+          Industrial Assets. <span class="gold-text">Global Capital.</span>
+          <span class="newline">Strategic Outcomes.</span>
+        </h1>
+        <p class="hero-desc">
+          Helping organizations unlock maximum value through industrial asset
+          recovery, equipment transactions, advisory services, and global
+          marketplace solutions.
+        </p>
+        <div class="hero-buttons">
+          <a href="oilfield-category.html" class="btn btn-primary">Explore Marketplace</a>
+          <a href="#" class="btn btn-outline">Schedule Consultation</a>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- Who Are We? - White Background -->
+    <section class="white-section" id="about">
+      <div class="two-col-grid">
+        <div class="col-text fade-in reveal-left">
+          <div class="section-tag">About Us</div>
+          <h2>Who Are We?</h2>
+          <p>
+            PRO CAPITAL is a trusted strategic partner across diverse commercial and industrial sectors, offering specialized expertise in asset management, finance, and restructuring. We provide tailored solutions to help companies, lenders, and investors navigate the growing demand for creative asset remarketing, storage, and maintenance. Ultimately, our clients rely on us to secure their investments and maximize asset value.
+          </p>
+          <a href="#" class="col-link">About PRO CAPITAL ▶</a>
+        </div>
+        <div class="col-image fade-in reveal-right">
+          <img
+            src="https://i.pinimg.com/1200x/31/cc/bb/31ccbb9f23e275fbe243be9ba30b89db.jpg"
+            alt="Corporate team meeting"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Services - Dark Background -->
+    <section class="services-section" id="services">
+      <div class="section-header fade-in">
+        <div class="section-tag">Capabilities</div>
+        <h2 class="section-title">Our Services</h2>
+        <div class="gold-divider"></div>
+        <p
+          style="
+            color: var(--warm-grey);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+            font-size: 0.95rem;
+          "
+        >
+          Comprehensive solutions designed for institutional-grade industrial
+          asset management and transaction execution.
+        </p>
+      </div>
+      <div class="services-grid fade-in stagger-parent">
+        <div class="service-card">
+          <div class="service-icon">01</div>
+          <h3>Asset Recovery & Disposition</h3>
+          <p>
+            Strategic recovery and disposition of industrial assets with maximum
+            value realization.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">02</div>
+          <h3>Equipment Transactions</h3>
+          <p>
+            Facilitating high-value equipment transactions across global
+            markets.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">03</div>
+          <h3>Strategic Advisory</h3>
+          <p>
+            Expert advisory services for complex industrial asset decisions.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">04</div>
+          <h3>Global Marketplace Solutions</h3>
+          <p>
+            Connecting buyers and sellers through our global marketplace
+            platform.
+          </p>
+        </div>
+      </div>
+      <div class="services-cta fade-in">
+        <a href="#" class="btn btn-outline">More about our solutions</a>
+      </div>
+    </section>
+
+    <!-- Image Section - White Background (Like Nations Capital Reference) -->
+    <section class="white-section">
+      <div class="two-col-grid reverse">
+        <div class="col-image fade-in reveal-right">
+          <img
+            src="18wheeler.png"
+            alt="Industrial equipment and trucks"
+          />
+        </div>
+        <div class="col-text fade-in reveal-left">
+          <div class="section-tag">Transactions</div>
+          <h2>Strategic Industrial Asset Transactions</h2>
+          <p>
+           PRO CAPITAL orchestrates complex industrial asset sales across global markets, seamlessly connecting institutional buyers with high-value infrastructure, heavy machinery, and operational facilities. Through a rigorous, transaction-driven approach, we optimize asset positioning and ensure seamless execution—delivering maximum capital recovery for every stakeholder.
+          </p>
+          <a href="#" class="col-link">Learn more ▶</a>
+        </div>
+      </div>
+      <!-- <div class="two-col-grid reverse" style="margin-top: 60px;">
+        <div class="col-text fade-in reveal-left">
+          <div class="section-tag">GLOBAL REACH</div>
+          <h2>Industrial Presence Across 47 Countries</h2>
+          <p>
+      With strategic offices and partnerships spanning North America, Europe, the Middle East, and Asia Pacific, PRO CAPITAL provides localized expertise with global transaction capabilities—ensuring efficient execution across major industrial corridors.
+          </p>
+          <a href="#" class="col-link">Learn more ▶</a>
+        </div>
+        <div class="col-image fade-in reveal-right">
+          <img
+            src="img 2.png"
+            alt="Industrial equipment and trucks"
+          />
+        </div>
+      </div> -->
+    </section>
+
+    <!-- CTA Section - Dark Background -->
+    <section class="cta-banner" id="contact">
+      <h2 class="fade-in">Ready to unlock the true value of your assets?</h2>
+      <p
+        style="
+          color: var(--warm-grey);
+          max-width: 600px;
+          margin: 0 auto 32px;
+          font-weight: 300;
+          font-size: 0.95rem;
+          position: relative;
+          z-index: 2;
+        "
+      >
+      Whether you need to divest surplus equipment, acquire new assets, or secure strategic advisory, our team is ready to drive results.
+      </p>
+      <div class="hero-buttons fade-in" style="position: relative; z-index: 2">
+        <a href="#" class="btn btn-primary">Schedule Consultation</a>
+        <a href="oilfield-category.html" class="btn btn-outline">Explore Marketplace</a>
+      </div>
+    </section>
+
+    <!-- Footer - Dark Background -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo" aria-label="PRO CAPITAL home">
+            <img src="Pro-Capital-full-logo-blk.png" alt="PRO CAPITAL logo">
+          </a>
+          <p>
+            Global industrial asset marketplace and advisory firm connecting
+            institutional capital with high-value infrastructure, equipment,
+            and recovery opportunities.
+          </p>
+          <!-- <div class="footer-contact">
+            <a href="#contact">Schedule Consultation</a>
+            <a href="#">General Inquiries</a>
+          </div> -->
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="oilfield-category.html">Marketplace</a></li>
+            <li><a href="oilfield-category.html">Asset Listings</a></li>
+            <li><a href="#">Valuation Tools</a></li>
+            <li><a href="#">Market Analytics</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#insights">Insights</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#">Houston</a></li>
+            <li><a href="#">Ft Worth</a></li>
+            <li><a href="#">London</a></li>
+            <li><a href="#">Singapore</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2027 PRO CAPITAL GROUP. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#">LinkedIn</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Navbar scroll effect
+      const navbar = document.getElementById("navbar");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navOverlay = document.getElementById("navOverlay");
+      const megaItems = document.querySelectorAll(".nav-item.has-mega");
+      const leafLinks = document.querySelectorAll(
+        ".mega-menu a, .utility-item a",
+      );
+      const isDesktopPointer = window.matchMedia(
+        "(hover: hover) and (pointer: fine) and (min-width: 1081px)",
+      );
+      let closeTimer = null;
+
+      function closeAllMega() {
+        megaItems.forEach((item) => {
+          item.classList.remove("mega-open");
+          item.querySelector(".nav-top-link").setAttribute("aria-expanded", "false");
+        });
+        if (isDesktopPointer.matches) navOverlay.classList.remove("active");
+      }
+
+      function openMega(item, topLink) {
+        megaItems.forEach((other) => {
+          if (other !== item) {
+            other.classList.remove("mega-open");
+            other.querySelector(".nav-top-link").setAttribute("aria-expanded", "false");
+          }
+        });
+        item.classList.add("mega-open");
+        topLink.setAttribute("aria-expanded", "true");
+        if (isDesktopPointer.matches) navOverlay.classList.add("active");
+      }
+
+      // Mobile / tablet drawer toggle
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navbar.classList.toggle("menu-open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        document.body.classList.toggle("nav-locked", isOpen);
+        navOverlay.classList.toggle("active", isOpen);
+        if (!isOpen) closeAllMega();
+      });
+
+      navOverlay.addEventListener("click", () => {
+        navbar.classList.remove("menu-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open menu");
+        document.body.classList.remove("nav-locked");
+        navOverlay.classList.remove("active");
+        closeAllMega();
+      });
+
+      leafLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navbar.classList.remove("menu-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open menu");
+          document.body.classList.remove("nav-locked");
+          navOverlay.classList.remove("active");
+          closeAllMega();
+        });
+      });
+
+      // Mega-menu open/close: click toggles everywhere; hover enhances desktop with a
+      // short close-delay so moving the mouse from the tab down into the panel
+      // doesn't flicker shut.
+      megaItems.forEach((item) => {
+        const topLink = item.querySelector(".nav-top-link");
+
+        topLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          const isOpen = item.classList.contains("mega-open");
+          if (isOpen) {
+            closeAllMega();
+          } else {
+            openMega(item, topLink);
+          }
+        });
+
+        item.addEventListener("mouseenter", () => {
+          if (!isDesktopPointer.matches) return;
+          clearTimeout(closeTimer);
+          openMega(item, topLink);
+        });
+
+        item.addEventListener("mouseleave", () => {
+          if (!isDesktopPointer.matches) return;
+          clearTimeout(closeTimer);
+          closeTimer = setTimeout(() => {
+            item.classList.remove("mega-open");
+            topLink.setAttribute("aria-expanded", "false");
+            const stillOpen = document.querySelector(".nav-item.mega-open");
+            if (!stillOpen) navOverlay.classList.remove("active");
+          }, 220);
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".nav-item.has-mega") && !e.target.closest("#navOverlay")) {
+          closeAllMega();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 1080 && navbar.classList.contains("menu-open")) {
+          navbar.classList.remove("menu-open");
+          document.body.classList.remove("nav-locked");
+          navOverlay.classList.remove("active");
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // Polished reveal animation on scroll
+      const fadeElements = document.querySelectorAll(".fade-in");
+      const motionAllowed = !window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      document.querySelectorAll(".stagger-parent").forEach((parent) => {
+        [...parent.children].forEach((child, index) => {
+          child.style.setProperty("--item-index", index);
+        });
+      });
+
+      if (motionAllowed) {
+        const observer = new IntersectionObserver(
+          (entries, activeObserver) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                activeObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.16,
+            rootMargin: "0px 0px -8% 0px",
+          },
+        );
+
+        fadeElements.forEach((el, index) => {
+          el.style.setProperty(
+            "--reveal-delay",
+            `${Math.min(index % 3, 2) * 80}ms`,
+          );
+          observer.observe(el);
+        });
+      } else {
+        fadeElements.forEach((el) => el.classList.add("visible"));
+      }
+    </script>
+  </body>
+</html>
